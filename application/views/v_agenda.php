@@ -63,7 +63,7 @@
                   </div>
                   <div class="col-xs-12 form-group">
                       <label >Tempat</label>
-                      <textarea id="editor-tempat" class="form-control" name="editor-tempant" data-link=""></textarea>
+                      <textarea id="editor-tempat" class="form-control" name="editor-tempat" data-link=""></textarea>
                   </div>
                   <div class="col-xs-12 form-group">
                       <label >Unit Kerja</label>
@@ -188,6 +188,12 @@
       $('#TambahAgenda').css('display','block');     
       // $('#edit-agenda').css('display','none');
       $('#editor-tanggal').val('');
+      $('#editor-waktu').val('');
+      $('#editor-kegiatan').val('');
+      $('#editor-tempat').val('');
+      $('#editor-hadir').val('');
+      $('#editor-keterangan').val('');
+      
       //$("#tabel-agenda").show('slow');
     }
         
