@@ -27,6 +27,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <link href="<?php echo base_url('assets/template/dist/css/skins/_all-skins.min.css') ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url('assets/custom/css/magnum_custom.css') ?>" rel="stylesheet" type="text/css" />
         
+        <link href="<?php echo base_url('assets/template/plugins/datepicker/datepicker3.css') ?>" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url('assets/template/plugins/timepicker/bootstrap-timepicker.min.css') ?>" rel="stylesheet" type="text/css" />
+        
+        
+
 
       
   

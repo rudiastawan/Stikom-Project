@@ -31,7 +31,10 @@
 <!-- AdminLTE App -->
 <script src="<?php echo base_url('assets/template/dist/js/app.min.js'); ?>" type="text/javascript"></script>
 
-
+<!-- bootstrap datepicker -->
+<script src="<?php echo base_url('assets/template/plugins/datepicker/bootstrap-datepicker.js'); ?>"></script>
+<!-- bootstrap timepicker -->
+<script src="<?php echo base_url('assets/template/plugins/timepicker/bootstrap-timepicker.min.js'); ?>"></script>
 <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
 <script src="<?php echo base_url('assets/template/plugins/flot/jquery.flot.pie.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/template/plugins/flot/jquery.flot.categories.min.js'); ?>"></script>
@@ -47,6 +50,18 @@
       "autoWidth": false
     });
   });
+
+
+  //Date picker
+    $('#editor-tanggal').datepicker({
+      autoclose: true
+    });
+  //Timepicker
+    $(".timepicker").timepicker({
+      showInputs: false
+    });
+
+
 </script>
 </body>
 </html>
