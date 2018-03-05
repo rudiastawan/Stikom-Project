@@ -15,7 +15,13 @@
 <body>
 
   <div class="wrapper">
-  <div class="container"><br /><br /><br /><br />
+  <div class="container" style="background-color: #52dac5;">
+    <div style="background-color: #3bcbb5; height: 100px; margin-top: -80px;">
+      <img src="<?php echo base_url('assets/images/lg-bappeda.png') ?>"; style="width: 75px; height: 75px; margin: 10px 10px 0px 30px; float: left;">
+      <h2 style="color: white; line-height: 100px; float: left; margin-left: 40px;"><b>BAPPEDA KABUPATEN BADUNG</b></h2>
+    </div>
+
+    <div><br />
     <h1>Login User</h1>
     
     <form class="form" action="<?php echo base_url()."Login/auth"; ?>" method="post" onsubmit="remmember();">
@@ -23,6 +29,7 @@
       <input type="password" placeholder="Password" name="pass" required>
       <button type="submit">Login</button>
     </form>
+  </div>
   </div>
   
   <ul class="bg-bubbles">
