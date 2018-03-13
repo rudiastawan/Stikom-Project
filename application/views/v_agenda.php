@@ -293,7 +293,7 @@
                 $('#preloader').css('display','block');
                 $.get(base_url+"Agenda/delete/"+id, function(data) {
                     $('#preloader').css('display','none');
-                    $('#main-content').html(data);
+                    $('#tabel-agenda').html(data);
                     $("#alert-hapus").css("display","block");
                     $("#alert-hapus").fadeOut(3000);
                 });
