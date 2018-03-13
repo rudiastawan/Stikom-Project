@@ -20,7 +20,34 @@
             <li><a href="#"><i class="fa fa-circle-o"></i> Pengumuman</a></li>
           </ul>
         </li>
-        
+         <li class="treeview">
+          <a href="#">
+            <i class="fa fa-download"></i>
+            <span>Surat Masuk</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="Agenda"><i class="fa fa-circle-o"></i> Kartu Kendali</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-upload"></i>
+            <span>Surat Keluar</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="Agenda"><i class="fa fa-circle-o"></i> Kartu Kendali</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a></li>
+          </ul>
+        </li>
+
+
       </ul>
     </section>
     <!-- /.sidebar -->

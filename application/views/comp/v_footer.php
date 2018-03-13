@@ -52,10 +52,7 @@
   });
 
 
-  //Date picker
-    $('#editor-tanggal').datepicker({
-      autoclose: true
-    });
+  
   //Timepicker
     $(".timepicker").timepicker({
       showInputs: false

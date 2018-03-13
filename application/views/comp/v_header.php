@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SIGAP | Dashboard</title>
+  <title>SIRAT | Dashboard</title>
    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
         <!-- Bootstrap 3.3.2 -->
@@ -43,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="bg-user-panel-header">
                 <img src="<?php echo base_url('assets/images/bg-blur.jpg') ?>" alt="User Image" />
             </div>
-            <a href="#" class="logo"><b> SIGAP</b></a>
+            <a href="#" class="logo"><b> SIRAT</b></a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
