@@ -38,6 +38,13 @@
 <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
 <script src="<?php echo base_url('assets/template/plugins/flot/jquery.flot.pie.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/template/plugins/flot/jquery.flot.categories.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/custom/ckeditor/ckeditor.js'); ?>"></script>
+<script src="<?php echo base_url('assets/custom/ckeditor//adapters/jquery.js'); ?>"></script>
+
+<script type="text/javascript">
+      $('textarea.texteditor').ckeditor();
+</script>
+
 <script>
   $(function () {
     $("#table1").DataTable();

@@ -17,7 +17,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="Agenda"><i class="fa fa-circle-o"></i> Agenda Kerja</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Pengumuman</a></li>
+            <li><a href="Pengumuman"><i class="fa fa-circle-o"></i> Pengumuman</a></li>
           </ul>
         </li>
          <li class="treeview">
