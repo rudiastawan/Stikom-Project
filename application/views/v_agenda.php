@@ -2,7 +2,7 @@
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li >
-          <a href="Dashboard">
+         <a href="<?php echo base_url('Dashboard'); ?>">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             
           </a>
@@ -16,8 +16,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="Agenda"><i class="fa fa-circle-o"></i> Agenda Kerja</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Pengumuman</a></li>
+            <li class="active"><a href="<?php echo base_url('Agenda'); ?>"><i class="fa fa-circle-o"></i> Agenda Kerja</a></li>
+            <li><a href="<?php echo base_url('Pengumuman'); ?>"><i class="fa fa-circle-o"></i> Pengumuman</a></li>
           </ul>
         </li>
          <li class="treeview">
@@ -29,7 +29,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Agenda"><i class="fa fa-circle-o"></i> Kartu Kendali</a></li>
+             <li><a href="<?php echo base_url('Surat/suratMasuk'); ?>"><i class="fa fa-circle-o"></i> Kartu Kendali</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a></li>
           </ul>
         </li>
@@ -121,18 +121,18 @@
                 <strong>Berhasil!</strong> Data Berhasil Dihapus !!
             </div>
         <div id="tabel-agenda" class=" col-xs-12" style="display: block;">
-            <div class="box box-danger">
+            <div class="box box-primary">
                 <div class="box-header">
                     <div class="btn-group pull-right">
                         <button class="btn btn-default btn-flat" title="print"><i class="fa fa-print"></i> Print</button>
                         <button id="TambahAgenda" onclick="addAgenda();" class="btn btn-success btn-flat" title="tambah agenda"><i class="fa fa-pencil-square-o"></i> Tambah Agenda</button>
                     </div>
                 </div>          
-                      <!-- /.box-header -->
+                      <!-- /.box-header #551E1E-->
                 <div class="box-body table-responsive" id="list-table-menu">
                     <table id="table1" class="table table1 table-bordered table-hover">
                         <thead>
-                            <tr style="background:  #551E1E; color: white; text-align: center;">
+                            <tr style="background:  #507ab2; color: white; text-align: center;">
 
                                 <th style="width: 5% ">No</th>
                                 <th>Tanggal</th>

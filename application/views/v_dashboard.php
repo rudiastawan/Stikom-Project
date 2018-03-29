@@ -2,7 +2,7 @@
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         <li class="active">
-          <a href="Dashboard">
+          <a href="<?php echo base_url('Dashboard'); ?>">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             
           </a>
@@ -16,8 +16,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Agenda"><i class="fa fa-circle-o"></i> Agenda Kerja</a></li>
-            <li><a href="Pengumuman"><i class="fa fa-circle-o"></i> Pengumuman</a></li>
+            <li><a href="<?php echo base_url('Agenda'); ?>"><i class="fa fa-circle-o"></i> Agenda Kerja</a></li>
+            <li><a href="<?php echo base_url('Pengumuman'); ?>"><i class="fa fa-circle-o"></i> Pengumuman</a></li>
           </ul>
         </li>
          <li class="treeview">
@@ -29,7 +29,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Agenda"><i class="fa fa-circle-o"></i> Kartu Kendali</a></li>
+            <li><a href="<?php echo base_url('Surat/suratMasuk'); ?>"><i class="fa fa-circle-o"></i> Kartu Kendali</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a></li>
           </ul>
         </li>
