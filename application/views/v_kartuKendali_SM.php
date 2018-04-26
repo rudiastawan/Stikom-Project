@@ -72,6 +72,8 @@
 
     <div id="main-content" class="row">
 
+
+
         <div id="edit-SM" class=" col-xs-12" style="display: none;">
             <div class="box box-success">
               <div class="box-header">
@@ -85,6 +87,7 @@
                 </div>
                 </div>
               </div>
+              <form id="form_surat">
               <div class="box-body">
                   <div class="col-xs-12 form-group">
                      <div class="col-sm-12 control-label" >
@@ -122,13 +125,22 @@
                        <textarea id="editor-perihal" name="editor-perihal" class="form-control" ></textarea>                                    
                      </div>
                   </div>
+
                    <div class="col-xs-12 form-group">
                      <label style="text-align:right;" class="col-sm-3 control-label">Klasifikasi Arsip Fond</label>
                         <div class="col-sm-9 control-label" style="text-align:left;">
-                          <select id='editor-fond_id' name='editor-fond_id' class='select2' style='width:100%;' data-placeholder='Pilih Klasifikasi Arsip Fond'>
-                            <option value=''></option>
-                            <option value='2'  >000 - UMUM</option>
-                            <option value='3'  >100 - PEMERINTAHAN</option>
+                          <select id='editor-fond_id' name='editor-fond_id' class="form-control">
+                            
+                            <option value="UMUM"  >UMUM</option>
+                            <option value="PEMERINTAHAN"  >PEMERINTAHAN</option>
+                            <option value="POLITIK/ORGANISASI KEMASYARAKATAN"  >POLITIK/ORGANISASI KEMASYARAKATAN</option>
+                            <option value="KEAMANAN/KETERTIBAN"  >KEAMANAN/KETERTIBAN</option>
+                            <option value="KESEJAHTERAAN RAKYAT"  >KESEJAHTERAAN RAKYAT</option>
+                            <option value="PEREKONOMIAN"  >PEREKONOMIAN</option>
+                            <option value="PEKERJAAN UMUM DAN KETENAGAAN"  >PEKERJAAN UMUM DAN KETENAGAAN</option>
+                            <option value="PENGAWASAN"  >PENGAWASAN</option>
+                            <option value="KEPEGAWAIAN"  >KEPEGAWAIAN</option>
+                            <option value="KEUANGAN"  >KEUANGAN</option>
                           </select>
                         </div>
                   </div>
@@ -141,20 +153,51 @@
                   <div class="col-xs-12 form-group">
                      <label style="text-align:right;" class="col-sm-3 control-label">Asal Surat</label>
                         <div class="col-sm-9 control-label" style="text-align:left;">
-                          <select name="editor-asal_surat" id="editor-asal_surat" class="form-control"  >
+                          <select name="sasal_surat" id="sasal_surat" class="form-control" onchange="select_asal_surat();" >
+                              <option value="" ></option>
                               <option value="Internal" >Internal</option>
                               <option value="External" >External</option>
                           </select>    
                         </div>
                   </div>
+                   <div id="tampil_asal_surat" style="display: none;" class="col-xs-12 form-group">
+                     <label style="text-align:right; " class="col-sm-3 control-label">Pilih Asal Surat</label>
+                        <div class="col-sm-9 control-label" style="text-align:left;">
+                          <select data-placeholder='Pilih Asal Surat' name="editor-asal_surat" id="editor-asal_surat" class="select2 form-control" style='width:100%;' >
+                             <option id="currAsal" ></option>
+                             
+                          </select>    
+                        </div>
+                  </div>
+                  <div id="tampil_asal_surat2" class="col-xs-12 form-group">
+                      <label class="col-sm-3 control-label" style="text-align:right;">Pilih Asal surat</label>
+                     <div class="col-sm-9 control-label" style="text-align:left;">
+                       <input id='currAsal2' class='form-control' type='text'  readonly />                                    
+                     </div>
+                  </div>
                   <div class="col-xs-12 form-group">
                      <label style="text-align:right;" class="col-sm-3 control-label">Tujuan Surat</label>
                         <div class="col-sm-9 control-label" style="text-align:left;">
-                           <select name="editor-tujuan_surat" id="editor-tujuan_surat" class="form-control"  >
+                           <select name="stujuan_surat" id="stujuan_surat" class="form-control" onchange="select_tujuan_surat();"  >
+                              <option value="" ></option>
                               <option value="Internal" >Internal</option>
                               <option value="External" >External</option>
                           </select>   
                         </div>
+                  </div>
+                  <div id="tampil_tujuan_surat" style="display: none;" class="col-xs-12 form-group">
+                     <label style="text-align:right; " class="col-sm-3 control-label">Pilih Tujuan Surat</label>
+                        <div class="col-sm-9 control-label" style="text-align:left;">
+                          <select data-placeholder='Pilih Tujuan Surat' name="editor-tujuan_surat" id="editor-tujuan_surat" class="select2 form-control" style='width:100%;' >
+                              <option id="currTujuan" ></option>
+                          </select>    
+                        </div>
+                  </div>
+                  <div id="tampil_tujuan_surat2" class="col-xs-12 form-group">
+                      <label class="col-sm-3 control-label" style="text-align:right;">Pilih Tujuan surat</label>
+                     <div class="col-sm-9 control-label" style="text-align:left;">
+                       <input id='currTujuan2' class='form-control' type='text'  readonly />                                    
+                     </div>
                   </div>
                   <div class="col-xs-12 form-group">
                       <label class="col-sm-3 control-label" style="text-align:right;">Tanggal surat</label>
@@ -210,12 +253,11 @@
                   <div class="col-xs-12 form-group">
                      <label style="text-align:right;" class="col-sm-3 control-label">Unit Pengolahan</label>
                         <div class="col-sm-9 control-label" style="text-align:left;">
-                          <select id='editor-unit_pengolahan_pengantar' name='editor-unit_pengolahan_pengantar' class='select2' style='width:100%;' data-placeholder='Pilih Unit Pengolahan'>
-                            <option value=''></option>
-                            <option value='1'  >000 - UMUM</option>
-                            <option value='2'  >100 - PEMERINTAHAN</option>
-                            <option value='3'  >200 - UMUM</option>
-                            <option value='4'  >300 - PEMERINTAHAN</option>
+                          <select id='editor-unit_pengolahan_pengantar' name='editor-unit_pengolahan_pengantar' class='select2' style='width:100%;' >
+                               <?php
+                                 foreach ($unit_pengolah->result() as $option): ?>
+                                     <option value="<?php echo $option->nama_unitPengolah; ?>" > <?php echo $option->nama_unitPengolah; ?></option>    
+                                <?php endforeach; ?>
                           </select>
                         </div>
                   </div>
@@ -244,18 +286,19 @@
                        <input type="date" id='editor-tanggal_disposisi' class='form-control' name='editor-tanggal_disposisi'  />                                    
                      </div>
                   </div>
-                  <div class="col-xs-12 form-group">
+                  <div id="unit_pengolah" class="col-xs-12 form-group">
                      <label style="text-align:right;" class="col-sm-3 control-label">Unit Pengolahan</label>
                         <div class="col-sm-9 control-label" style="text-align:left;">
-                          <select id='editor-unit_pengolahan_disposisi' name='editor-unit_pengolahan_disposisi' class='select2' style='width:100%;' data-placeholder='Pilih Unit Pengolahan'>
-                            <option value=''></option>
-                            <option value='1'  >000 - UMUM</option>
-                            <option value='2'  >100 - PEMERINTAHAN</option>
-                            <option value='3'  >200 - UMUM</option>
-                            <option value='4'  >300 - PEMERINTAHAN</option>
+                          <select id='editor-unit_pengolahan_disposisi' name='editor-unit_pengolahan_disposisi' class='select2' style='width:100%;' >
+                            <?php
+                                 foreach ($unit_pengolah->result() as $option): ?>
+
+                                     <option value="<?php echo $option->nama_unitPengolah; ?>" > <?php echo $option->nama_unitPengolah; ?></option>    
+                                <?php endforeach; ?>
                           </select>
                         </div>
                   </div>
+                 
                   <div class="col-xs-12 form-group">
                       <label class="col-sm-3 control-label" style="text-align:right;">File Disposisi</label>
                      <div class="col-sm-9 form-group" style="text-align:left;">
@@ -266,7 +309,6 @@
                      <label style="text-align:right;" class="col-sm-3 control-label">Disposisi Ke</label>
                         <div class="col-sm-9 control-label" style="text-align:left;">
                           <select id='editor-disposisi_ke' name='editor-disposisi_ke' class='select2' style='width:100%;' data-placeholder='Pilih tujuan Disposisi'>
-                            <option value=''></option>
                             <option value='1'  >000 - UMUM</option>
                             <option value='2'  >100 - PEMERINTAHAN</option>
                             <option value='3'  >200 - UMUM</option>
@@ -277,6 +319,7 @@
                   
                   
               </div>
+              </form>
           </div>
         </div>
 
@@ -318,8 +361,8 @@
                                 <td><?php echo $row->index_surat;  ?></td>
                                 <td><?php echo $row->tanggal_surat;  ?></td> 
                                 <td><?php echo $row->tanggal_surat;  ?></td>
-                                <td><?php echo $row->asal_surat;  ?><?php echo 'sdad asdasdad adadadad';  ?></td>
-                                <td><?php echo $row->tujuan_surat;  ?><?php echo 'sdad asdasdad adadadad';  ?></td>                  
+                                <td><?php echo $row->asal_surat;  ?></td>
+                                <td><?php echo $row->tujuan_surat;  ?></td>                  
                                 <td><?php echo $row->sifat_surat;  ?></td>
                                 <td style="text-align: center;">
                                   <div class="btn-group">
@@ -433,6 +476,10 @@
         //$('#preloader').css('display','block');
         $.get(base_url+"Surat/select/"+id, function(surat) { 
             //$('#preloader').css('display','none');
+            $('#currAsal').val(surat.asal_surat);
+            $('#currAsal2').val(surat.asal_surat);
+            $('#currTujuan').val(surat.tujuan_surat);
+            $('#currTujuan2').val(surat.tujuan_surat);
             $('#edit-SM').show('slow');   
             $('#btn-add').addClass('disabled');
             $('#title-edit').html('Edit Data Surat'); 
@@ -442,7 +489,7 @@
             $('#editor-status').val(surat.sifat_surat);
             $('#editor-index_surat').val(surat.index_surat);
             $('#editor-perihal').val(surat.perihal);
-            $('#editor-fond_id').val(surat.kasifikasi_arsip);
+            $('#editor-fond_id').val(surat.klasifikasi_arsip);
             $('#editor-ringkas').val(surat.isi_ringkasan);
             $('#editor-asal_surat').val(surat.asal_surat);
             $('#editor-tujuan_surat').val(surat.tujuan_surat);
@@ -477,13 +524,46 @@
         });
     }
 
+    //select asal surat
+    function select_asal_surat(){
+       $('#tampil_asal_surat2').css('display','none');
+      value = document.getElementById("sasal_surat").value;
+      $.ajax({
+           url:"<?php echo base_url();?>Surat/select_asal/"+value+"",
+           success: function(response){
+           $("#tampil_asal_surat").css("display","block");
+           $("#editor-asal_surat").html(response);
+           
+           },
+           dataType:"html"
+         });
+
+         return false;
+    }
+     function select_tujuan_surat(){
+      $('#tampil_tujuan_surat2').css('display','none');
+      value = document.getElementById("stujuan_surat").value;
+      $.ajax({
+           url:"<?php echo base_url();?>Surat/select_asal/"+value+"",
+           success: function(response){
+           $("#tampil_tujuan_surat").css("display","block");
+           $("#editor-tujuan_surat").html(response);
+           
+           },
+           dataType:"html"
+         });
+
+         return false;
+    }
+
+
 
 
   //button batal
     function Batal() {
       $("#tabel-SM").show();
       $("#edit-SM").hide();
-
+      $('#form_surat').trigger("reset");
       $('#TambahSM').css('display','block');     
       // $('#edit-agenda').css('display','none');
       $('#editor-tanggal').val('');
@@ -506,39 +586,88 @@
             $('#modal-message .modal-body').text('Silakan Lengkapi Inputan');
             $('#modal-message').modal();
             return;
+        } 
+        if($('#file_lampran').val()==''|| $('#file_surat').val()=='' || $('#editor-unggah_berkas').val()==''|| $('editor-file_disposisi').val()==''){
+            $('#modal-message .modal-body').text('FIle Upload Belum lengkap');
+            $('#modal-message').modal();
+            return;
 
         } 
 
         if($('#btn-submit').html()=='Tambah'){ 
             $('#preloader').css('display','block');
-            var nosurat=$('#editor-nomor_surat').val();
-            var status= $('#editor-status').val();
-            var indexsurat= $('#editor-index_surat').val();
-            var perihal=$('#editor-perihal').val();
-            var fond= $('#editor-fond_id').val();
-            var ringkas= $('#editor-ringkas').val();
-            var asalsurat =$('#editor-asal_surat').val();
-            var tujuansurat =$('#editor-tujuan_surat').val();
-            var tanggalsurat =$('#editor-tanggal_surat').val();
-            var lampiran =$('#editor-lampiran').val();
-            var catatan =$('#editor-catatan').val();
-            var bataspenyelesaian =$('#editor-batas_penyelesaian').val();
-            var tanggalpengantar =$('#editor-tanggal_pengantar').val();
-            var unitpengolahanpengantar =$('#editor-unit_pengolahan_pengantar').val();
-            var informasidisposisi =$('#editor-informasi_disposisi').val();
-            var tanggaldisposisi =$('#editor-tanggal_disposisi').val();
-            var unitpengolahandisposisi =$('#editor-unit_pengolahan_disposisi').val();
-            var disposisike = $('#editor-disposisi_ke').val();
-            $.post(base_url+"Surat/insert", {nosurat:nosurat, status:status, indexsurat:indexsurat, perihal:perihal,fond:fond, ringkas:ringkas, asalsurat:asalsurat, tujuansurat:tujuansurat, tanggalsurat:tanggalsurat, lampiran:lampiran, catatan:catatan, bataspenyelesaian:bataspenyelesaian, tanggalpengantar:tanggalpengantar, unitpengolahanpengantar:unitpengolahanpengantar, informasidisposisi:informasidisposisi, tanggaldisposisi:tanggaldisposisi, unitpengolahandisposisi:unitpengolahandisposisi, disposisike:disposisike }, function(data, textStatus, xhr) {
-                $('#preloader').css('display','none');
-                $('#TambahSM').css('display','block'); 
-                $('#edit-SM').css('display','none');
-                $('#tabel-SM').css('display','block');
-                $('#tabel-SM').html(data);
+            
 
-                $("#alert-tambah").css("display","block");
-                $("#alert-tambah").fadeOut(3000);
-            }); 
+            var file_lampiran = $('#file_lampran')[0].files[0];
+            var file_name_lampiran =$('#file_lampran')[0].files[0].name;
+            var file_surat = $('#file_surat')[0].files[0];
+            var file_name_surat =$('#file_surat')[0].files[0].name;
+            var file_pengantar_surat = $('#editor-unggah_berkas')[0].files[0];
+            var file_name_pengantar_surat =$('#editor-unggah_berkas')[0].files[0].name;
+            var file_disposisi = $('#editor-file_disposisi')[0].files[0];
+            var file_name_disposisi =$('#editor-file_disposisi')[0].files[0].name;
+
+            var form_data = new FormData();
+ 
+            form_data.append('file_lampiran', file_lampiran);
+            form_data.append('file_name_lampiran', file_name_lampiran);
+            form_data.append('file_surat', file_surat);
+            form_data.append('file_name_surat', file_name_surat);
+            form_data.append('file_pengantar_surat', file_pengantar_surat);
+            form_data.append('file_name_pengantar_surat', file_name_pengantar_surat);
+            form_data.append('file_disposisi', file_disposisi);
+            form_data.append('file_name_disposisi', file_name_disposisi);
+            $.ajax({
+                url: base_url+'Surat/insert_file', // point to server-side PHP script
+                dataType: 'json',  // what to expect back from the PHP script, if anything
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                type: 'post',
+                success: function(data,status){
+                    //alert(php_script_response); // display response from the PHP script, if any
+                    if (data.status=='success') {
+
+                        var no_surat=$('#editor-nomor_surat').val();
+                        var sifat_surat= $('#editor-status').val();
+                        var index_surat= $('#editor-index_surat').val();
+                        var perihal=$('#editor-perihal').val();
+                        var klasifikasi_arsip= $('#editor-fond_id').val();
+                        var isi_ringkasan= $('#editor-ringkas').val();
+                        var asal_surat =$('#editor-asal_surat').val();
+                        var tujuan_surat =$('#editor-tujuan_surat').val();
+                        var tanggal_surat =$('#editor-tanggal_surat').val();
+                        var lampiran =$('#editor-lampiran').val();
+                        var catatan =$('#editor-catatan').val();
+                        var batas_penyelesaian =$('#editor-batas_penyelesaian').val();
+                        var tanggal_pengantar =$('#editor-tanggal_pengantar').val();
+                        var unit_pengolah_pengantar =$('#editor-unit_pengolahan_pengantar').val();
+                        var informasi_disposisi =$('#editor-informasi_disposisi').val();
+                        var tgl_disposisi =$('#editor-tanggal_disposisi').val();
+                        var unit_pengolah_disposisi =$('#editor-unit_pengolahan_disposisi').val();
+                        var tujuan_disposisi = $('#editor-disposisi_ke').val();
+                        var file_lampiran = data.file_lampiran;
+                        var file_surat = data.file_surat;
+                        var file_pengantar = data.file_pengantar_surat;
+                        var file_disposisi = data.file_disposisi;
+                        
+                        $.post(base_url+"Surat/insert", {no_surat:no_surat, sifat_surat:sifat_surat, index_surat:index_surat, perihal:perihal,klasifikasi_arsip:klasifikasi_arsip, isi_ringkasan:isi_ringkasan, asal_surat:asal_surat, tujuan_surat:tujuan_surat, tanggal_surat:tanggal_surat, lampiran:lampiran, catatan:catatan, batas_penyelesaian:batas_penyelesaian, tanggal_pengantar:tanggal_pengantar, unit_pengolah_pengantar:unit_pengolah_pengantar, informasi_disposisi:informasi_disposisi, tgl_disposisi:tgl_disposisi, unit_pengolah_disposisi:unit_pengolah_disposisi, tujuan_disposisi:tujuan_disposisi,file_lampiran:file_lampiran,file_surat:file_surat,file_pengantar:file_pengantar,file_disposisi:file_disposisi}, function(data, textStatus, xhr) {
+                            $('#form_surat').trigger("reset");
+                            $('#preloader').css('display','none');
+                            $('#TambahSM').css('display','block'); 
+                            $('#edit-SM').css('display','none');
+                            $('#tabel-SM').css('display','block');
+                            $('#tabel-SM').html(data);
+
+                            $("#alert-tambah").css("display","block");
+                            $("#alert-tambah").fadeOut(3000);
+                        }); 
+                    }else{
+                        
+                    }
+                }
+            });
         }
         else if($('#btn-submit').html()=='Edit'){
             $('#preloader').css('display','block');

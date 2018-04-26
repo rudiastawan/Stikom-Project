@@ -1,6 +1,15 @@
 <div id="tabel-SM" class=" col-xs-12" style="display: block;">
             <div class="box box-success">
                 <div class="box-header">
+
+                    <div id="alert-tambah" class="alert alert-success" style="display: none;">
+                        <strong>Berhasil!</strong> Data Berhasil Disimpan !!
+                    </div>
+
+                    <div id="alert-hapus" class="alert alert-danger" style="display: none;">
+                        <strong>Berhasil!</strong> Data Berhasil Dihapus !!
+                    </div>
+                   
                     <div class="btn-group pull-right">
                         <button class="btn btn-default btn-flat" title="print"><i class="fa fa-print"></i> Print</button>
                         <button id="TambahSM" onclick="addSuratM();" class="btn btn-success btn-flat" title="tambah surat masuk"><i class="fa fa-pencil-square-o"></i> Tambah Data Surat Masuk</button>
