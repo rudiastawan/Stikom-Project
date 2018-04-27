@@ -28,24 +28,16 @@ class M_surat extends CI_Model {
 		$this->db->insert('tb_surat', $data);
 	}
 
-	public function update($id,$tanggal, $waktu, $kegiatan, $tempat, $unit, $hadir, $keterangan )
+	public function update($id,$data)
 	{
-		$data = array(
-			'tanggal' => $tanggal,
-			'waktu' => $waktu,
-			'kegiatan' => $kegiatan,
-			'tempat' => $tempat,
-			'unit_kerja' => $unit,
-			'hadir' => $hadir,
-			'keterangan'=> $keterangan
-		);
-		$this->db->where('id', $id);
-		$this->db->update('tb_agenda', $data);
+
+		$this->db->where('id_surat', $id);
+		$this->db->update('tb_surat', $data);
 	}
 
 	public function delete($id) {
-		$this->db->where('id', $id);
-		$this->db->delete('tb_agenda');
+		$this->db->where('id_surat', $id);
+		$this->db->delete('tb_surat');
 	}
 
 

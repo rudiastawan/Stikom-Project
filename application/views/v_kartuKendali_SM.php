@@ -80,14 +80,11 @@
                 <h3 id="title-edit" class="box-title">Tambah Data Surat Masuk Kartu Kendali</h3>
                 <div class="col-xs-12">
                    <div class="col-sm-12 control-label" >
-                  <div class=" btn-group pull-right">
-                        <button onclick="Batal();" class="btn btn-default btn-flat">Batal</button>
-                        <button onclick="submit(this);" id="btn-submit" class="btn btn-primary btn-flat">Tambah</button>
-                  </div>
+                 
                 </div>
                 </div>
               </div>
-              <form id="form_surat">
+             
               <div class="box-body">
                   <div class="col-xs-12 form-group">
                      <div class="col-sm-12 control-label" >
@@ -211,11 +208,12 @@
                        <textarea id="editor-lampiran" name="editor-lampiran" class="form-control" ></textarea>                                    
                      </div>
                   </div>
-                   <div class="col-xs-12 form-group">
+                  <div class="col-xs-12 form-group">
                       <label class="col-sm-3 control-label" style="text-align:right;">File lampiran</label>
                      <div class="col-sm-9 form-group" style="text-align:left;">
-                       <input type="file" id="file_lampran" name="file_lampran" multiple>                                    
+                         <input type="file" id="file_lampran" name="file_lampran" multiple> 
                      </div>
+                                                        
                   </div>
                    <div class="col-xs-12 form-group">
                       <label class="col-sm-3 control-label" style="text-align:right;">Catatan</label>
@@ -316,10 +314,27 @@
                           </select>
                         </div>
                   </div>
+                  <input id='file_lampiran2' type='text'    /> 
+                  <input id='file_surat2' type='text'    /> 
+                  <input id='file_pengantar_surat2' type='text'    /> 
+                  <input id='file_disposisi2' type='text'    /> 
+
+
+                  <br>
+                  <br>
+                   <div class="col-xs-12 form-group">
+                     <label style="text-align:right;" class="col-sm-3 control-label"></label>
+                        <div class="col-sm-9 control-label" style="text-align:right;">
+                         <button onclick="Batal();" class="btn btn-lg btn-default btn-flat">Batal</button>
+                         <button onclick="submit(this);" id="btn-submit" class="btn btn-lg btn-primary btn-flat">Tambah</button>
+                         
+                       
+                        </div>
+                  </div>
                   
                   
               </div>
-              </form>
+            
           </div>
         </div>
 
@@ -367,7 +382,7 @@
                                 <td style="text-align: center;">
                                   <div class="btn-group">
                                     <button class="btn btn-primary btn-flat" data-toggle="tooltip" title="Edit" onclick="editAgenda(<?php echo $row->id_surat; ?>);"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-danger btn-flat" data-toggle="tooltip" title="Delete" onclick="deleteAgenda(<?php echo $row->id_surat; ?>);"><i class="fa fa-trash"></i></button>
+                                    <button class="btn btn-danger btn-flat" data-toggle="tooltip" title="Delete" onclick="deleteSurat(<?php echo $row->id_surat; ?>);"><i class="fa fa-trash"></i></button>
                                   </div>
                                 </td>
                             </tr> 
@@ -484,7 +499,7 @@
             $('#btn-add').addClass('disabled');
             $('#title-edit').html('Edit Data Surat'); 
             $('#btn-submit').html('Edit');
-            $('#editor-nomor_surat').attr('data-link', surat.id);
+            $('#editor-nomor_surat').attr('data-link', surat.id_surat);
             $('#editor-nomor_surat').val(surat.no_surat);
             $('#editor-status').val(surat.sifat_surat);
             $('#editor-index_surat').val(surat.index_surat);
@@ -503,20 +518,25 @@
             $('#editor-tanggal_disposisi').val(surat.tgl_disposisi);
             $('#editor-unit_pengolahan_disposisi').val(surat.unit_pengolah_disposisi);
             $('#editor-disposisi_ke').val(surat.tujuan_disposisi);
+
+            $('#file_lampiran2').val(surat.file_lampiran);
+            $('#file_surat2').val(surat.file_surat);
+            $('#file_pengantar_surat2').val(surat.file_pengantar);
+            $('#file_disposisi2').val(surat.file_disposisi);
         }, 'json');
     }
 
 
     //hapus Agenda
-    function deleteAgenda(id) {
+    function deleteSurat(id) {
         $('#modal-delete').modal();
         $(document).one('click','#btn-delete', function(event) {
             $('#modal-delete').modal('hide').on('hidden.bs.modal', function() {
                 
                 $('#preloader').css('display','block');
-                $.get(base_url+"Agenda/delete/"+id, function(data) {
+                $.get(base_url+"Surat/delete/"+id, function(data) {
                     $('#preloader').css('display','none');
-                    $('#tabel-agenda').html(data);
+                    $('#tabel-SM').html(data);
                     $("#alert-hapus").css("display","block");
                     $("#alert-hapus").fadeOut(3000);
                 });
@@ -564,15 +584,8 @@
       $("#tabel-SM").show();
       $("#edit-SM").hide();
       $('#form_surat').trigger("reset");
-      $('#TambahSM').css('display','block');     
+      //$('#TambahSM').css('display','block');     
       // $('#edit-agenda').css('display','none');
-      $('#editor-tanggal').val('');
-      $('#editor-waktu').val('');
-      $('#editor-kegiatan').val('');
-      $('#editor-tempat').val('');
-       $('#editor-unit').val('');
-      $('#editor-hadir').val('');
-      $('#editor-keterangan').val('');
       
       //$("#tabel-agenda").show('slow');
     }
@@ -587,16 +600,17 @@
             $('#modal-message').modal();
             return;
         } 
-        if($('#file_lampran').val()==''|| $('#file_surat').val()=='' || $('#editor-unggah_berkas').val()==''|| $('editor-file_disposisi').val()==''){
-            $('#modal-message .modal-body').text('FIle Upload Belum lengkap');
-            $('#modal-message').modal();
-            return;
-
-        } 
+        
 
         if($('#btn-submit').html()=='Tambah'){ 
             $('#preloader').css('display','block');
-            
+            if($('#file_lampran').val()==''|| $('#file_surat').val()=='' || $('#editor-unggah_berkas').val()==''|| $('#editor-file_disposisi').val()==''){
+                  $('#modal-message .modal-body').text('FIle Upload Belum lengkap');
+                  $('#modal-message').modal();
+                  return;
+
+            } 
+
 
             var file_lampiran = $('#file_lampran')[0].files[0];
             var file_name_lampiran =$('#file_lampran')[0].files[0].name;
@@ -671,23 +685,107 @@
         }
         else if($('#btn-submit').html()=='Edit'){
             $('#preloader').css('display','block');
-            var id= $('#editor-keterangan').attr('data-link');
-            var tanggal=$('#editor-tanggal').val();
-            var waktu= $('#editor-waktu').val();
-            var kegiatan= $('#editor-kegiatan').val();
-            var tempat= $('#editor-tempat').val();
-            var unit= $('#editor-unit').val();
-            var hadir= $('#editor-hadir').val();
-            var keterangan= $('#editor-keterangan').val();
+            
 
-            $.post(base_url+"Agenda/update", { id: id, tanggal:tanggal, waktu:waktu, kegiatan:kegiatan, tempat:tempat,unit:unit, hadir:hadir, keterangan:keterangan }, function(data, textStatus, xhr) {
-                $('#preloader').css('display','none');
-                $('#edit-agenda').css('display','none');
-                $('#tabel-agenda').html(data);
-                $("#alert-tambah").css("display","block");
-                $("#alert-tambah").fadeOut(3000);
+            var cek_isi_file_lampiran=$('#file_lampran').val();
+            var cek_isi_file_surat=$('#file_surat').val();
+            var cek_isi_file_pengantar_surat=$('#editor-unggah_berkas').val();
+            var cek_isi_file_disposisi=$('#editor-file_disposisi').val();
+            var nama_isi_file_lampiran=$('#file_lampiran2').val();
+            var nama_isi_file_surat=$('#file_surat2').val();
+            var nama_isi_file_pengantar_surat=$('#file_pengantar_surat2').val();
+            var nama_isi_file_disposisi=$('#file_disposisi2').val();
 
-            }); 
+            var form_data = new FormData();
+            if ($('#file_lampran').val()!='') {
+              var file_lampiran = $('#file_lampran')[0].files[0];
+              var file_name_lampiran =$('#file_lampran')[0].files[0].name;
+              form_data.append('file_lampiran', file_lampiran);
+              form_data.append('file_name_lampiran', file_name_lampiran);
+            }
+
+            if ($('#file_surat').val()!='') {
+              var file_surat = $('#file_surat')[0].files[0];
+              var file_name_surat =$('#file_surat')[0].files[0].name;
+              form_data.append('file_surat', file_surat);
+              form_data.append('file_name_surat', file_name_surat);
+            }
+
+            if ($('#editor-unggah_berkas').val()!='') {
+              var file_pengantar_surat = $('#editor-unggah_berkas')[0].files[0];
+              var file_name_pengantar_surat =$('#editor-unggah_berkas')[0].files[0].name;
+              form_data.append('file_pengantar_surat', file_pengantar_surat);
+              form_data.append('file_name_pengantar_surat', file_name_pengantar_surat); 
+              
+            }
+            if ($('#editor-file_disposisi').val()!='') {
+              var file_disposisi = $('#editor-file_disposisi')[0].files[0];
+              var file_name_disposisi =$('#editor-file_disposisi')[0].files[0].name;
+              form_data.append('file_disposisi', file_disposisi);
+              form_data.append('file_name_disposisi', file_name_disposisi);
+            }
+
+            form_data.append('cek_isi_file_lampiran', cek_isi_file_lampiran);
+            form_data.append('cek_isi_file_surat', cek_isi_file_surat);
+            form_data.append('cek_isi_file_pengantar_surat', cek_isi_file_pengantar_surat);
+            form_data.append('cek_isi_file_disposisi', cek_isi_file_disposisi);
+            form_data.append('nama_isi_file_lampiran', nama_isi_file_lampiran);
+            form_data.append('nama_isi_file_surat', nama_isi_file_surat);
+            form_data.append('nama_isi_file_pengantar_surat', nama_isi_file_pengantar_surat);
+            form_data.append('nama_isi_file_disposisi', nama_isi_file_disposisi);
+
+
+            $.ajax({
+                url: base_url+'Surat/edit_file', // point to server-side PHP script
+                dataType: 'json',  // what to expect back from the PHP script, if anything
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                type: 'post',
+                success: function(data,status){
+                    //alert(php_script_response); // display response from the PHP script, if any
+                    if (data.status=='success') {
+                        var id=$('#editor-nomor_surat').attr('data-link');
+                        var no_surat=$('#editor-nomor_surat').val();
+                        var sifat_surat= $('#editor-status').val();
+                        var index_surat= $('#editor-index_surat').val();
+                        var perihal=$('#editor-perihal').val();
+                        var klasifikasi_arsip= $('#editor-fond_id').val();
+                        var isi_ringkasan= $('#editor-ringkas').val();
+                        var asal_surat =$('#editor-asal_surat').val();
+                        var tujuan_surat =$('#editor-tujuan_surat').val();
+                        var tanggal_surat =$('#editor-tanggal_surat').val();
+                        var lampiran =$('#editor-lampiran').val();
+                        var catatan =$('#editor-catatan').val();
+                        var batas_penyelesaian =$('#editor-batas_penyelesaian').val();
+                        var tanggal_pengantar =$('#editor-tanggal_pengantar').val();
+                        var unit_pengolah_pengantar =$('#editor-unit_pengolahan_pengantar').val();
+                        var informasi_disposisi =$('#editor-informasi_disposisi').val();
+                        var tgl_disposisi =$('#editor-tanggal_disposisi').val();
+                        var unit_pengolah_disposisi =$('#editor-unit_pengolahan_disposisi').val();
+                        var tujuan_disposisi = $('#editor-disposisi_ke').val();
+                        var file_lampiran = data.file_lampiran;
+                        var file_surat = data.file_surat;
+                        var file_pengantar = data.file_pengantar_surat;
+                        var file_disposisi = data.file_disposisi;
+                        
+                        $.post(base_url+"Surat/edit", {id:id,no_surat:no_surat, sifat_surat:sifat_surat, index_surat:index_surat, perihal:perihal,klasifikasi_arsip:klasifikasi_arsip, isi_ringkasan:isi_ringkasan, asal_surat:asal_surat, tujuan_surat:tujuan_surat, tanggal_surat:tanggal_surat, lampiran:lampiran, catatan:catatan, batas_penyelesaian:batas_penyelesaian, tanggal_pengantar:tanggal_pengantar, unit_pengolah_pengantar:unit_pengolah_pengantar, informasi_disposisi:informasi_disposisi, tgl_disposisi:tgl_disposisi, unit_pengolah_disposisi:unit_pengolah_disposisi, tujuan_disposisi:tujuan_disposisi,file_lampiran:file_lampiran,file_surat:file_surat,file_pengantar:file_pengantar,file_disposisi:file_disposisi}, function(data, textStatus, xhr) {
+                            $('#form_surat').trigger("reset");
+                            $('#preloader').css('display','none');
+                            $('#TambahSM').css('display','block'); 
+                            $('#edit-SM').css('display','none');
+                            $('#tabel-SM').css('display','block');
+                            $('#tabel-SM').html(data);
+
+                            $("#alert-tambah").css("display","block");
+                            $("#alert-tambah").fadeOut(3000);
+                        }); 
+                    }else{
+                        
+                    }
+                }
+            });
         }
        
     };

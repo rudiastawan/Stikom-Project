@@ -111,27 +111,96 @@ class Surat extends CI_Controller {
         	'file_pengantar_surat'=>$pengantar_surat['file_name'],
         	'file_disposisi'=>$disposisi['file_name'])));
 	}
-
-
-	public function update() {
+	
+	public function edit() {
 
 		$id=$this->input->post('id');
-		$tanggal=$this->input->post('tanggal');
-		$waktu= $this->input->post('waktu');
-		$kegiatan=$this->input->post('kegiatan');
-		$tempat=$this->input->post('tempat');
-		$unit=$this->input->post('unit');
-		$hadir=$this->input->post('hadir');
-		$keterangan=$this->input->post('keterangan');
+		$data=$this->input->post();
+		unset($data['id']);
 
 
-		$this->M_agenda->update($id,$tanggal, $waktu, $kegiatan, $tempat, $unit, $hadir, $keterangan );
+		$this->M_surat->update($id,$data);
 		$this->tabel();
 		
 	}
 
+	public function edit_file(){
+
+		$name_lampiran=$this->input->post('file_name_lampiran');
+		$name_surat=$this->input->post('file_name_surat');
+		$name_pengantar_surat=$this->input->post('file_name_pengantar_surat');
+		$name_disposisi=$this->input->post('file_name_disposisi');
+
+		 $cek_isi_file_lampiran=$this->input->post('cek_isi_file_lampiran');
+         $cek_isi_file_surat=$this->input->post('cek_isi_file_surat');
+         $cek_isi_file_pengantar_surat=$this->input->post('cek_isi_file_pengantar_surat');
+         $cek_isi_file_disposisi=$this->input->post('cek_isi_file_disposisi');
+
+        $lampiran['file_name']=$this->input->post('nama_isi_file_lampiran');
+        $surat['file_name']=$this->input->post('nama_isi_file_surat');
+        $pengantar_surat['file_name']=$this->input->post('nama_isi_file_pengantar_surat');
+        $disposisi['file_name']=$this->input->post('nama_isi_file_disposisi');
+
+ 
+        $this->load->library('upload');
+
+        if ($cek_isi_file_lampiran!='') {
+        	$lampiran = array(
+			'upload_path' => './uploads/lampiran/',
+			'allowed_types' => 'pdf',
+			'file_name' => 'lmp_'.time().'_'.$name_lampiran,
+			);
+
+           $this->upload->initialize($lampiran);
+ 		   $this->upload->do_upload('file_lampiran');
+        }
+
+        if ($cek_isi_file_surat!='') {
+        	 $surat = array(
+			'upload_path' => './uploads/surat/',
+			'allowed_types' => 'pdf',
+			'file_name' => 'surat_'.time().'_'.$name_surat,
+			);
+
+	       $this->upload->initialize($surat);
+	 	   $this->upload->do_upload('file_surat');
+        }
+
+ 		if ($cek_isi_file_pengantar_surat!='') {
+ 			$pengantar_surat = array(
+			'upload_path' => './uploads/pengantar/',
+			'allowed_types' => 'pdf',
+			'file_name' => 'ps_'.time().'_'.$name_pengantar_surat,
+			);
+
+ 			$this->upload->initialize($pengantar_surat);
+            $this->upload->do_upload('file_pengantar_surat');
+ 		}
+ 		if ($cek_isi_file_disposisi!='') {
+ 			$disposisi = array(
+			'upload_path' => './uploads/disposisi/',
+			'allowed_types' => 'pdf',
+			'file_name' => 'dsp_'.time().'_'.$name_disposisi,
+			);
+
+ 			$this->upload->initialize($disposisi);
+            $this->upload->do_upload('file_disposisi');
+ 		}
+        
+
+        $this->output->set_content_type('application/json')->set_output(json_encode(array(
+        	'status'=>'success',
+        	'file_lampiran'=>$lampiran['file_name'],
+        	'file_surat'=>$surat['file_name'],
+        	'file_pengantar_surat'=>$pengantar_surat['file_name'],
+        	'file_disposisi'=>$disposisi['file_name'])));
+	}
+
+
+
+
 	public function delete($id){
-		$this->M_agenda->delete($id);
+		$this->M_surat->delete($id);
 		$this->tabel();
 
 	}
