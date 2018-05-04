@@ -30,7 +30,7 @@
           </a>
           <ul class="treeview-menu">
              <li><a href="<?php echo base_url('Surat/suratMasuk'); ?>"><i class="fa fa-circle-o"></i> Kartu Kendali</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a></li>
+            <li><a href="<?php echo base_url('Surat/disposisiMasuk'); ?>"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -42,8 +42,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Agenda"><i class="fa fa-circle-o"></i> Kartu Kendali</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a></li>
+             <li><a href="<?php echo base_url('Surat/suratKeluar'); ?>"><i class="fa fa-circle-o"></i> Kartu Kendali</a></li>
+            <li><a href="<?php echo base_url('Surat/disposisiKeluar'); ?>"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a>
           </ul>
         </li>
       </ul>

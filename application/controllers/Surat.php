@@ -18,11 +18,42 @@ class Surat extends CI_Controller {
 		$data['currUser']=$this->session->userdata('fullname');
 		$surat['data']= $this->M_surat->select_all();
 		$surat['unit_pengolah']= $this->M_surat->selectAll_unit();
+		$surat['tujuanDisposisi']= $this->M_surat->select_internal();
 
 		$this->load->view('comp/v_header',$data);
 		$this->load->view('v_kartuKendali_SM',$surat);
 		$this->load->view('comp/v_footer');
 	}
+
+	public function disposisiMasuk(){
+		$data['currUser']=$this->session->userdata('fullname');
+		$surat['data']= $this->M_surat->select_all();
+
+		$this->load->view('comp/v_header',$data);
+		$this->load->view('v_RiwayatDisposisi_SM',$surat);
+		$this->load->view('comp/v_footer');
+	}
+
+	public function suratKeluar(){
+		$data['currUser']=$this->session->userdata('fullname');
+		$surat['data']= $this->M_surat->select_all();
+		$surat['unit_pengolah']= $this->M_surat->selectAll_unit();
+		$surat['tujuanDisposisi']= $this->M_surat->select_internal();
+
+		$this->load->view('comp/v_header',$data);
+		$this->load->view('v_kartuKendali_SK',$surat);
+		$this->load->view('comp/v_footer');
+	}
+
+	public function disposisiKeluar(){
+		$data['currUser']=$this->session->userdata('fullname');
+		$surat['data']= $this->M_surat->select_all();
+
+		$this->load->view('comp/v_header',$data);
+		$this->load->view('v_RiwayatDisposisi_SK',$surat);
+		$this->load->view('comp/v_footer');
+	}
+
 	
 	public function select($id){
 		$surat=$this->M_surat->select($id)->row();

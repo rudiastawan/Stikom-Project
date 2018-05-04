@@ -20,7 +20,7 @@
             <li><a href="<?php echo base_url('Pengumuman'); ?>"><i class="fa fa-circle-o"></i> Pengumuman</a></li>
           </ul>
         </li>
-         <li class="active treeview">
+         <li class=" treeview">
           <a href="#">
             <i class="fa fa-download"></i>
             <span>Surat Masuk</span>
@@ -33,7 +33,7 @@
             <li><a href="<?php echo base_url('Surat/disposisiMasuk'); ?>"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <li class="active treeview">
           <a href="#">
             <i class="fa fa-upload"></i>
             <span>Surat Keluar</span>
@@ -42,8 +42,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-             <li><a href="<?php echo base_url('Surat/suratKeluar'); ?>"><i class="fa fa-circle-o"></i> Kartu Kendali</a></li>
-            <li><a href="<?php echo base_url('Surat/disposisiKeluar'); ?>"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a>
+            <li class="active"><a href="<?php echo base_url('Surat/suratKeluar'); ?>"><i class="fa fa-circle-o"></i> Kartu Kendali</a></li>
+            <li><a href="<?php echo base_url('Surat/disposisiKeluar'); ?>"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a></li>
           </ul>
         </li>
       </ul>
@@ -55,7 +55,7 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>Data Surat Masuk Kartu Kendali</h1>
+      <h1>Data Surat Keluar Kartu Kendali</h1>
     </section>
 
     <!-- Main content -->
@@ -77,7 +77,7 @@
         <div id="edit-SM" class=" col-xs-12" style="display: none;">
             <div class="box box-success">
               <div class="box-header">
-                <h3 id="title-edit" class="box-title">Tambah Data Surat Masuk Kartu Kendali</h3>
+                <h3 id="title-edit" class="box-title">Tambah Data Surat Keluar Kartu Kendali</h3>
                 <div class="col-xs-12">
                    <div class="col-sm-12 control-label" >
                  
@@ -347,7 +347,7 @@
                 <div class="box-header">
                     <div class="btn-group pull-right">
                         <button class="btn btn-default btn-flat" title="print"><i class="fa fa-print"></i> Print</button>
-                        <button id="TambahSM" onclick="addSuratM();" class="btn btn-success btn-flat" title="tambah surat masuk"><i class="fa fa-pencil-square-o"></i> Tambah Data Surat Masuk</button>
+                        <button id="TambahSM" onclick="addSuratM();" class="btn btn-success btn-flat" title="tambah surat masuk"><i class="fa fa-pencil-square-o"></i> Tambah Data Surat Keluar</button>
                     </div>
                 </div>          
                       <!-- /.box-header -->
