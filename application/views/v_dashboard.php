@@ -46,6 +46,12 @@
             <li><a href="#"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a></li>
           </ul>
         </li>
+        <li class="">
+          <a href="<?php echo base_url('Manajemen_User'); ?>">
+            <i class="fa fa-user-circle-o"></i> <span>Manajemen User</span>
+            
+          </a>
+        </li>
 
 
       </ul>
