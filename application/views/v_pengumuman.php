@@ -30,7 +30,7 @@
           </a>
           <ul class="treeview-menu">
              <li><a href="<?php echo base_url('Surat/suratMasuk'); ?>"><i class="fa fa-circle-o"></i> Kartu Kendali</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a></li>
+           <li class="active"><a href="<?php echo base_url('Surat/disposisiMasuk'); ?>"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -42,8 +42,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Agenda"><i class="fa fa-circle-o"></i> Kartu Kendali</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a></li>
+            <li><a href="<?php echo base_url('Surat/suratKeluar'); ?>"><i class="fa fa-circle-o"></i> Kartu Kendali</a></li>
+            <li><a href="<?php echo base_url('Surat/disposisiKeluar'); ?>"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a>
           </ul>
         </li>
       </ul>
@@ -82,7 +82,7 @@
                         <button onclick="submit(this);" id="btn-submit" class="btn btn-primary btn-flat">Tambah</button>
                   </div>
                 </div>
-              </div><hr />
+              </div>
               <div class="box-body">
                <div class="row">
                   <div class="col-sm-1">
@@ -176,9 +176,10 @@
                         <tfoot>
                             <tr>
                                <th style="width: 5% ">No</th>
-                                <th>Tanggal</th>
-                                <th>Waktu</th>
-                                <th>Aksi</th>
+                                <th>Informasi</th>
+                                <th>Mulai</th>
+                                <th>Akhir</th>
+                                <th>Pilihan</th>
                             </tr>
                         </tfoot>
                     </table>

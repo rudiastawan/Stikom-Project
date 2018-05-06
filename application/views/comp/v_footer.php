@@ -40,7 +40,8 @@
 <script src="<?php echo base_url('assets/template/plugins/flot/jquery.flot.categories.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/custom/ckeditor/ckeditor.js'); ?>"></script>
 <script src="<?php echo base_url('assets/custom/ckeditor//adapters/jquery.js'); ?>"></script>
-
+<!-- Select2 -->
+<script src="<?php echo base_url('assets/template/plugins/select2/select2.full.min.js'); ?>"></script>
 <script type="text/javascript">
       $('textarea.texteditor').ckeditor();
 </script>
@@ -65,6 +66,7 @@
       showInputs: false
     });
 
+$(".select2").select2();
 
 </script>
 </body>

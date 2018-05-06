@@ -30,6 +30,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
         <link href="<?php echo base_url('assets/template/plugins/datepicker/datepicker3.css') ?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url('assets/template/plugins/timepicker/bootstrap-timepicker.min.css') ?>" rel="stylesheet" type="text/css" />
+
+          <!-- Select2 -->
+   
+        <link href="<?php echo base_url('assets/template/plugins/select2/select2.min.css') ?>" rel="stylesheet" type="text/css" />
+
         
         
 
