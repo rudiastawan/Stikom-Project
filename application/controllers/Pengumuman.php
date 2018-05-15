@@ -13,6 +13,7 @@ class Pengumuman extends CI_Controller {
 	public function index(){
 		$data['currUser']=$this->session->userdata('fullname');
 		$pengumuman['data']= $this->M_pengumuman->select_all();
+		$data['foto']=$this->session->userdata('thumb_foto');
 
 		$this->load->view('comp/v_header',$data);
 		$this->load->view('v_pengumuman',$pengumuman);

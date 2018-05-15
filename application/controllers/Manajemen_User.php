@@ -14,10 +14,35 @@ class Manajemen_User extends CI_Controller {
 
 	public function index(){
 		$data['currUser']=$this->session->userdata('fullname');
+		$data['foto']=$this->session->userdata('thumb_foto');
 		$manajemen_user['data']= $this->M_user->select_all();
 		$this->load->view('comp/v_header',$data);
 		$this->load->view('v_manajemen_user',$manajemen_user);
 		$this->load->view('comp/v_footer');
+	}
+
+	public function profil(){
+		$data['currUser']=$this->session->userdata('fullname');
+		$data['foto']=$this->session->userdata('thumb_foto');
+		$data['profil']=$this->M_user->select_profil($this->session->userdata('username'))->result();
+
+		$this->load->view('comp/v_header',$data);
+		$this->load->view('v_profil');
+		$this->load->view('comp/v_footer');
+	} 
+	public function update_pass(){
+
+		$id=$this->input->post('id');
+		$newpass=md5($this->input->post('newpass'));
+
+		$data = array(
+			'password' => $newpass,
+			);
+
+		$this->db->where('id', $id);
+		$this->db->update('tb_user', $data);
+		redirect('manajemen_user/profil');
+
 	}
 
 	public function select($id){
@@ -39,23 +64,24 @@ class Manajemen_User extends CI_Controller {
 			// Mengumpulkan data POST dalam bentuk array
 			
 
-		$namalengkap		=	$this->input->post('editor-namalengkap');
-        $username			= 	$this->input->post('editor-username');
-        $password			= 	$this->input->post('editor-password');
+		$namalengkap		=	$this->input->post('namalengkap');
+		$jabatan			=	$this->input->post('jabatan');
+        $username			= 	$this->input->post('username');
+        $password			= 	$this->input->post('password');
 
-		$this->M_user->insert($username, $password, $namalengkap, $foto, $thumb_foto);
+		$this->M_user->insert($username, $password, $namalengkap, $foto, $thumb_foto,$jabatan);
 		redirect('manajemen_user/index');
 	}
 
 	public function update() {
 
 		$id=$this->input->post('id');
-		$informasi=$this->input->post('informasi');
-		$mulaipengumuman= $this->input->post('mulaipengumuman');
-		$akhirpengumuman= $this->input->post('akhirpengumuman');
+		$namalengkap		=	$this->input->post('editor-namalengkap');
+		$jabatan			=	$this->input->post('editor-jabatan');
+        $username			= 	$this->input->post('editor-username');
 
-		$this->M_pengumuman->update($id,$informasi, $mulaipengumuman, $akhirpengumuman );
-		$this->tabel();
+		$this->M_user->update($id,$username, $namalengkap,$jabatan);
+		redirect('manajemen_user/index');
 		
 	}
 

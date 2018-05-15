@@ -46,6 +46,12 @@
             <li><a href="<?php echo base_url('Surat/disposisiKeluar'); ?>"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a>
           </ul>
         </li>
+        <li class="treeview">
+          <a href="<?php echo base_url('Manajemen_User'); ?>">
+            <i class="fa fa-user-circle-o"></i> <span>Manajemen User</span>
+            
+          </a>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->

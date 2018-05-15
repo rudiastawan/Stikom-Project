@@ -46,6 +46,12 @@
             <li><a href="<?php echo base_url('Surat/disposisiKeluar'); ?>"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a>
           </ul>
         </li>
+         <li class="treeview">
+          <a href="<?php echo base_url('Manajemen_User'); ?>">
+            <i class="fa fa-user-circle-o"></i> <span>Manajemen User</span>
+            
+          </a>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -210,8 +216,8 @@
                   </div>
                   <div class="col-xs-12 form-group">
                       <label class="col-sm-3 control-label" style="text-align:right;">File lampiran</label>
-                     <div class="col-sm-9 form-group" style="text-align:left;">
-                         <input type="file" id="file_lampran" name="file_lampran" multiple> 
+                     <div class="col-sm-9 form-group " style="text-align:left;">
+                         <input type="file" id="file_lampran" name="file_lampran"  class="form-control input-50" multiple> 
                      </div>
                                                         
                   </div>
@@ -230,7 +236,7 @@
                   <div class="col-xs-12 form-group">
                       <label class="col-sm-3 control-label" style="text-align:right;">File surat</label>
                      <div class="col-sm-9 form-group" style="text-align:left;">
-                       <input type="file" id="file_surat" name="file_surat" multiple>                                    
+                       <input type="file" id="file_surat" name="file_surat" class="form-control input-50" multiple>                                    
                      </div>
                   </div>
 
@@ -252,6 +258,7 @@
                      <label style="text-align:right;" class="col-sm-3 control-label">Unit Pengolahan</label>
                         <div class="col-sm-9 control-label" style="text-align:left;">
                           <select id='editor-unit_pengolahan_pengantar' name='editor-unit_pengolahan_pengantar' class='select2' style='width:100%;' >
+                             <option ></option>
                                <?php
                                  foreach ($unit_pengolah->result() as $option): ?>
                                      <option value="<?php echo $option->nama_unitPengolah; ?>" > <?php echo $option->nama_unitPengolah; ?></option>    
@@ -262,7 +269,7 @@
                    <div class="col-xs-12 form-group">
                       <label class="col-sm-3 control-label" style="text-align:right;">Unggah Berkas</label>
                      <div class="col-sm-9 form-group" style="text-align:left;">
-                       <input type="file" id="editor-unggah_berkas" name="editor-unggah_berkas" multiple >                                    
+                       <input type="file" id="editor-unggah_berkas" name="editor-unggah_berkas" class="form-control input-50" multiple >                                    
                      </div>
                   </div>
                   <div class="col-xs-12 form-group">
@@ -271,6 +278,12 @@
                         <h4><strong>Disposisi</strong></h4> 
                     </div>
                   </div>
+                  </div>
+                  <div class="col-xs-12 form-group">
+                      <label class="col-sm-3 control-label" style="text-align:right;">Nomor Disposisi</label>
+                     <div class="col-sm-9 control-label" style="text-align:left;">
+                       <input id='editor-nomor_disposisi' class='form-control' name='editor-nomor_disposisi' type='text'  data-link=""  />                                    
+                     </div>
                   </div>
                   <div class="col-xs-12 form-group">
                       <label class="col-sm-3 control-label" style="text-align:right;">Informasi Disposisi</label>
@@ -288,7 +301,9 @@
                      <label style="text-align:right;" class="col-sm-3 control-label">Unit Pengolahan</label>
                         <div class="col-sm-9 control-label" style="text-align:left;">
                           <select id='editor-unit_pengolahan_disposisi' name='editor-unit_pengolahan_disposisi' class='select2' style='width:100%;' >
+                             <option ></option>   
                             <?php
+
                                  foreach ($unit_pengolah->result() as $option): ?>
 
                                      <option value="<?php echo $option->nama_unitPengolah; ?>" > <?php echo $option->nama_unitPengolah; ?></option>    
@@ -300,13 +315,14 @@
                   <div class="col-xs-12 form-group">
                       <label class="col-sm-3 control-label" style="text-align:right;">File Disposisi</label>
                      <div class="col-sm-9 form-group" style="text-align:left;">
-                       <input type="file" id="editor-file_disposisi" name="editor-file_disposisi" multiple >                                    
+                       <input type="file" id="editor-file_disposisi" name="editor-file_disposisi" class="form-control input-50" multiple >                                    
                      </div>
                   </div>
                   <div class="col-xs-12 form-group">
                      <label style="text-align:right;" class="col-sm-3 control-label">Disposisi Ke</label>
                         <div class="col-sm-9 control-label" style="text-align:left;">
                           <select id='editor-disposisi_ke' name='editor-disposisi_ke' class='select2' style='width:100%;' data-placeholder='Pilih tujuan Disposisi'>
+                             <option ></option>
                             <?php
                                  foreach ($tujuanDisposisi->result() as $option): ?>
 
@@ -339,12 +355,13 @@
           </div>
         </div>
 
-<div id="alert-hapus" class="alert alert-danger" style="display: none;">
-                <strong>Berhasil!</strong> Data Berhasil Dihapus !!
-            </div>
+
         <div id="tabel-SM" class=" col-xs-12" style="display: block;">
             <div class="box box-success">
                 <div class="box-header">
+                  <div id="alert-hapus" class="alert alert-danger" style="display: none;">
+                <strong>Berhasil!</strong> Data Berhasil Dihapus !!
+            </div>
                     <div class="btn-group pull-right">
                         <button class="btn btn-default btn-flat" title="print"><i class="fa fa-print"></i> Print</button>
                         <button id="TambahSM" onclick="addSuratM();" class="btn btn-success btn-flat" title="tambah surat masuk"><i class="fa fa-pencil-square-o"></i> Tambah Data Surat Masuk</button>
@@ -502,6 +519,7 @@
             $('#btn-submit').html('Edit');
             $('#editor-nomor_surat').attr('data-link', surat.id_surat);
             $('#editor-nomor_surat').val(surat.no_surat);
+            $('#editor-nomor_disposisi').val(surat.no_disposisi);
             $('#editor-status').val(surat.sifat_surat);
             $('#editor-index_surat').val(surat.index_surat);
             $('#editor-perihal').val(surat.perihal);
@@ -645,6 +663,7 @@
                     if (data.status=='success') {
 
                         var no_surat=$('#editor-nomor_surat').val();
+                         var no_disposisi=$('#editor-nomor_disposisi').val();
                         var sifat_surat= $('#editor-status').val();
                         var index_surat= $('#editor-index_surat').val();
                         var perihal=$('#editor-perihal').val();
@@ -666,14 +685,16 @@
                         var file_surat = data.file_surat;
                         var file_pengantar = data.file_pengantar_surat;
                         var file_disposisi = data.file_disposisi;
+                        var jenis_surat = 'surat masuk';
                         
-                        $.post(base_url+"Surat/insert", {no_surat:no_surat, sifat_surat:sifat_surat, index_surat:index_surat, perihal:perihal,klasifikasi_arsip:klasifikasi_arsip, isi_ringkasan:isi_ringkasan, asal_surat:asal_surat, tujuan_surat:tujuan_surat, tanggal_surat:tanggal_surat, lampiran:lampiran, catatan:catatan, batas_penyelesaian:batas_penyelesaian, tanggal_pengantar:tanggal_pengantar, unit_pengolah_pengantar:unit_pengolah_pengantar, informasi_disposisi:informasi_disposisi, tgl_disposisi:tgl_disposisi, unit_pengolah_disposisi:unit_pengolah_disposisi, tujuan_disposisi:tujuan_disposisi,file_lampiran:file_lampiran,file_surat:file_surat,file_pengantar:file_pengantar,file_disposisi:file_disposisi}, function(data, textStatus, xhr) {
+                        $.post(base_url+"Surat/insert", {no_surat:no_surat,no_disposisi:no_disposisi, sifat_surat:sifat_surat, index_surat:index_surat, perihal:perihal,klasifikasi_arsip:klasifikasi_arsip, isi_ringkasan:isi_ringkasan, asal_surat:asal_surat, tujuan_surat:tujuan_surat, tanggal_surat:tanggal_surat, lampiran:lampiran, catatan:catatan, batas_penyelesaian:batas_penyelesaian, tanggal_pengantar:tanggal_pengantar, unit_pengolah_pengantar:unit_pengolah_pengantar, informasi_disposisi:informasi_disposisi, tgl_disposisi:tgl_disposisi, unit_pengolah_disposisi:unit_pengolah_disposisi, tujuan_disposisi:tujuan_disposisi,file_lampiran:file_lampiran,file_surat:file_surat,file_pengantar:file_pengantar,file_disposisi:file_disposisi,jenis_surat:jenis_surat}, function(data, textStatus, xhr) {
                             $('#form_surat').trigger("reset");
                             $('#preloader').css('display','none');
                             $('#TambahSM').css('display','block'); 
                             $('#edit-SM').css('display','none');
                             $('#tabel-SM').css('display','block');
                             $('#tabel-SM').html(data);
+
 
                             $("#alert-tambah").css("display","block");
                             $("#alert-tambah").fadeOut(3000);
@@ -749,6 +770,7 @@
                     if (data.status=='success') {
                         var id=$('#editor-nomor_surat').attr('data-link');
                         var no_surat=$('#editor-nomor_surat').val();
+                         var no_disposisi=$('#editor-nomor_disposisi').val();
                         var sifat_surat= $('#editor-status').val();
                         var index_surat= $('#editor-index_surat').val();
                         var perihal=$('#editor-perihal').val();
@@ -770,8 +792,9 @@
                         var file_surat = data.file_surat;
                         var file_pengantar = data.file_pengantar_surat;
                         var file_disposisi = data.file_disposisi;
+                         var jenis_surat = 'surat masuk';
                         
-                        $.post(base_url+"Surat/edit", {id:id,no_surat:no_surat, sifat_surat:sifat_surat, index_surat:index_surat, perihal:perihal,klasifikasi_arsip:klasifikasi_arsip, isi_ringkasan:isi_ringkasan, asal_surat:asal_surat, tujuan_surat:tujuan_surat, tanggal_surat:tanggal_surat, lampiran:lampiran, catatan:catatan, batas_penyelesaian:batas_penyelesaian, tanggal_pengantar:tanggal_pengantar, unit_pengolah_pengantar:unit_pengolah_pengantar, informasi_disposisi:informasi_disposisi, tgl_disposisi:tgl_disposisi, unit_pengolah_disposisi:unit_pengolah_disposisi, tujuan_disposisi:tujuan_disposisi,file_lampiran:file_lampiran,file_surat:file_surat,file_pengantar:file_pengantar,file_disposisi:file_disposisi}, function(data, textStatus, xhr) {
+                        $.post(base_url+"Surat/edit", {id:id,no_surat:no_surat,no_disposisi:no_disposisi, sifat_surat:sifat_surat, index_surat:index_surat, perihal:perihal,klasifikasi_arsip:klasifikasi_arsip, isi_ringkasan:isi_ringkasan, asal_surat:asal_surat, tujuan_surat:tujuan_surat, tanggal_surat:tanggal_surat, lampiran:lampiran, catatan:catatan, batas_penyelesaian:batas_penyelesaian, tanggal_pengantar:tanggal_pengantar, unit_pengolah_pengantar:unit_pengolah_pengantar, informasi_disposisi:informasi_disposisi, tgl_disposisi:tgl_disposisi, unit_pengolah_disposisi:unit_pengolah_disposisi, tujuan_disposisi:tujuan_disposisi,file_lampiran:file_lampiran,file_surat:file_surat,file_pengantar:file_pengantar,file_disposisi:file_disposisi,jenis_surat:jenis_surat}, function(data, textStatus, xhr) {
                             $('#form_surat').trigger("reset");
                             $('#preloader').css('display','none');
                             $('#TambahSM').css('display','block'); 

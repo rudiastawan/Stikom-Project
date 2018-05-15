@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
         
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
       
   
 </head>
@@ -61,12 +61,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </a>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                        <li class="user user-menu">
-                            <a href="<?php echo base_url('Login/unauth') ?>">
-                                <span class="hidden-xs"><b>Keluar</b></span>
-                                <span class="hidden-sm hidden-md hidden-lg"><b style="font-size: 20px;" class="fa fa-sign-out"></b></span>
-                            </a>
-                        </li>
+                        <li class="dropdown user user-menu">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-user "></i>
+                   
+                    <span class="hidden-xs">
+              <?php echo $currUser; ?></span> 
+            </a>
+
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li style="background-color: white;" class="user-header">
+    
+                <p style="color: black">
+                 <?php echo $currUser; ?>
+                </p>
+              </li>
+              <!-- Menu Body -->
+              
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                  <a href="#" class="btn btn-default btn-flat">Profil</a>
+                </div>
+                <div class="pull-right">
+                  <a id="logout" href="<?php echo base_url('Login/unauth') ?>" class="btn btn-default btn-flat">Keluar</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+
+
+                       
                     </ul>
                 </div>
             </nav>
@@ -81,7 +107,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <img src="<?php echo base_url('assets/images/bg-blur.jpg') ?>" alt="User Image" />
             </div>
             <div class="image img_circle">
-                <img src="<?php echo base_url('assets/images/user.jpg') ?>" alt="User Image" />
+                <img src="<?php echo base_url('upload/'.$foto.'') ?>" alt="User Image" />
             </div>
             <div class="info">
                 <p style="color: #fff;"><?php echo $currUser; ?></p>

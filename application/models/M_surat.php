@@ -48,10 +48,18 @@ class M_surat extends CI_Model {
 		return $this->db->get();
 	}
 
-	public function select_all() {
+	public function select_allSM() {
 
 		$this->db->select('*');
 		$this->db->order_by('id_surat', 'DESC');
+		$this->db->where('jenis_surat', 'surat masuk');
+		return $this->db->get('tb_surat'); 
+	} 
+	public function select_allSK() {
+
+		$this->db->select('*');
+		$this->db->order_by('id_surat', 'DESC');
+		$this->db->where('jenis_surat', 'surat keluar');
 		return $this->db->get('tb_surat'); 
 	} 
 	public function selectAll_unit(){

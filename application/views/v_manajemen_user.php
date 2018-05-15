@@ -28,8 +28,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url('Surat/suratMasuk'); ?>"><i class="fa fa-circle-o"></i> Kartu Kendali</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a></li>
+             <li><a href="<?php echo base_url('Surat/suratMasuk'); ?>"><i class="fa fa-circle-o"></i> Kartu Kendali</a></li>
+           <li class="active"><a href="<?php echo base_url('Surat/disposisiMasuk'); ?>"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -41,8 +41,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="Agenda"><i class="fa fa-circle-o"></i> Kartu Kendali</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a></li>
+            <li><a href="<?php echo base_url('Surat/suratKeluar'); ?>"><i class="fa fa-circle-o"></i> Kartu Kendali</a></li>
+            <li><a href="<?php echo base_url('Surat/disposisiKeluar'); ?>"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a></li>
           </ul>
         </li>
         <li class="active">
@@ -77,25 +77,39 @@
     </div>
 
     <div id="main-content" class="row">
-        <div id="edit-manajemen_user" class=" col-xs-12" style="display: none;">
+        <div id="manajemen_user" class=" col-xs-12" style="display: none;">
             <div class="box box-success">
               <div class="box-header">
                 <br />
-                <h1 id="title-edit" class="box-title" style="margin-left: 90px;">Tambah User</h1>
+                <h1  class="box-title" style="margin-left: 90px;">Tambah User</h1>
               </div><hr />
               <div class="box-body">
                <?php echo form_open_multipart('manajemen_user/insert'); ?>
                   <div class="col-sm-7 form-group" style="margin-left: 80px !important;">
                       <label >Nama Lengkap</label>
-                      <input type="text" class="form-control pull-right" id="editor-namalengkap" name="editor-namalengkap">
+                      <input type="text" class="form-control pull-right" id="namalengkap" name="namalengkap">
                   </div>
                   <div class="col-sm-7 form-group" style="margin-left: 80px !important;">
                       <label >Username</label>
-                     <input type="text" class="form-control pull-right" id="editor-username" name="editor-username">
+                     <input type="text" class="form-control pull-right" id="username" name="username">
+                  </div>
+                   <div class="col-sm-7 form-group" style="margin-left: 80px !important;">
+                      <label >Jabatan</label>
+                     <select name="jabatan" id="jabatan" class="form-control"   >
+                              <option value="" ></option>
+                              <option value="Operator" >Operator</option>
+                              <option value="Sekretaris" >Sekretaris</option>
+                              <option value="Kepala" >Kepala</option>
+                              <option value="Bidang Sosial dan Budaya " >Admin Bidang Sosial dan Budaya</option>
+                              <option value="Bidang Ekonomi dan Sumber Daya Alam" >Admin Bidang Ekonomi dan Sumber Daya Alam</option>
+                              <option value="Bidang Sarana dan Prasarana Wilayah" >Admin Bidang Sarana dan Prasarana Wilayah</option>
+                              <option value="Bidang Sumber Daya Manusia" >Admin Bidang Sumber Daya Manusia</option>
+
+                          </select>   
                   </div>
                   <div class="col-sm-7 form-group" style="margin-left: 80px !important;">
                       <label >Password</label>
-                     <input type="password" class="form-control pull-right" id="editor-password" name="editor-password">
+                     <input type="password" class="form-control pull-right" id="password" name="password">
                   </div>
                   <div class="col-sm-7 form-group" style="margin-left: 80px !important;">
                   <label for="nama">Foto</label>
@@ -108,19 +122,60 @@
               <div class="well form-actions">
                 <button type="submit" class="btn btn-success" style="margin-left: 85px;">Simpan</button> 
                 <?php echo form_close(); ?>
+                 <button onclick="Batalx();" class="btn btn-danger">Batal</button>
+              </div> <!-- /form-actions -->
+          </div>
+        </div>
+
+        <div id="edit-manajemen_user" class=" col-xs-12" style="display: none;">
+            <div class="box box-success">
+              <div class="box-header">
+                <br />
+                <h1  class="box-title" style="margin-left: 90px;">Edit User</h1>
+              </div><hr />
+              <div class="box-body">
+               <?php echo form_open_multipart('manajemen_user/update'); ?>
+               <input type="hidden" class="form-control pull-right" id="id" name="id">
+                  <div class="col-sm-7 form-group" style="margin-left: 80px !important;">
+                      <label >Nama Lengkap</label>
+                      <input type="text" class="form-control pull-right" id="editor-namalengkap" name="editor-namalengkap">
+                  </div>
+                  <div class="col-sm-7 form-group" style="margin-left: 80px !important;">
+                      <label >Username</label>
+                     <input type="text" class="form-control pull-right" id="editor-username" name="editor-username">
+                  </div>
+                   <div class="col-sm-7 form-group" style="margin-left: 80px !important;">
+                      <label >Jabatan</label>
+                     <select name="editor-jabatan" id="jabatan" class="form-control"   >
+                              <option id="currjabatan"  ></option>
+                              <option value="Operator" >Operator</option>
+                              <option value="Sekretaris" >Sekretaris</option>
+                              <option value="Kepala" >Kepala</option>
+                              <option value="Bidang Sosial dan Budaya " >Admin Bidang Sosial dan Budaya</option>
+                              <option value="Bidang Ekonomi dan Sumber Daya Alam" >Admin Bidang Ekonomi dan Sumber Daya Alam</option>
+                              <option value="Bidang Sarana dan Prasarana Wilayah" >Admin Bidang Sarana dan Prasarana Wilayah</option>
+                              <option value="Bidang Sumber Daya Manusia" >Admin Bidang Sumber Daya Manusia</option>
+
+                          </select>   
+                  </div>
+
+                  <br>
+                   </div>
+              <div class="well form-actions">
+                <button type="submit" class="btn btn-success" style="margin-left: 85px;">Simpan</button> 
+                <?php echo form_close(); ?>
                  <button onclick="Batal();" class="btn btn-danger">Batal</button>
               </div> <!-- /form-actions -->
           </div>
         </div>
 
-            <div id="alert-hapus" class="alert alert-danger" style="display: none;">
-                <strong>Berhasil!</strong> Data Pengumuman Berhasil Dihapus !!
-            </div>
+           
 
 
         <div id="tabel-manajemen_user" class=" col-xs-12" style="display: block;">
             <div class="box box-primary">
                 <div class="box-header">
+                  
                     <div class="btn-group pull-right">
                         <button class="btn btn-default btn-flat" title="print"><i class="fa fa-print"></i> Print</button>
                         <button id="TambahUser" onclick="addUser();" class="btn btn-success btn-flat" title="Tambah User"><i class="fa fa-pencil-square-o"></i> Tambah User</button>
@@ -135,6 +190,7 @@
                                 <th style="width: 5% ">No</th>
                                 <th>Nama Lengkap</th>
                                 <th>Username</th>
+                                <th>Jabatan</th>
                                 <th>Foto</th>
                                 <th>Pilihan</th>
                             </tr>
@@ -153,14 +209,15 @@
                                 <td style="text-align: center"><?php echo $i;$i++;  ?></td>
                                 <td><?php echo $row->fullname;  ?></td>
                                 <td><?php echo $row->username;  ?></td>
-                                <td>
+                                <td><?php echo $row->jabatan;  ?></td>
+                                <td style="text-align: center">
                 <a href="<?php echo $foto_url;?>" target="_blank">
                 <img src="<?php echo $thumbnail_foto_url;?>" alt="<?php echo $row->fullname ?> ">
                 </a>
               </td>
                                 <td style="text-align: center;">
                                   <div class="btn-group">
-                                    <button class="btn btn-primary btn-flat" data-toggle="tooltip" title="Edit" onclick="editPengumuman(<?php echo $row->id; ?>);"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-primary btn-flat" data-toggle="tooltip" title="Edit" onclick="editUser(<?php echo $row->id; ?>);"><i class="fa fa-pencil"></i></button>
                                     <button class="btn btn-danger btn-flat" data-toggle="tooltip" title="Delete" onclick="deleteUser(<?php echo $row->id; ?>);"><i class="fa fa-trash"></i></button>
                                   </div>
                                 </td>
@@ -170,10 +227,12 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                               <th style="width: 5% ">No</th>
-                                <th>Tanggal</th>
-                                <th>Waktu</th>
-                                <th>Aksi</th>
+                              <th style="width: 5% ">No</th>
+                                <th>Nama Lengkap</th>
+                                <th>Username</th>
+                                 <th>Jabatan</th>
+                                  <th>Foto</th>
+                                <th>Pilihan</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -213,7 +272,7 @@
             <h4 class="modal-title" id="myModalLabel">Peringatan !!</h4>
          </div>
          <div class="modal-body">
-            Apakah Anda Yakin Menghapus Agenda ini?
+            Apakah Anda Yakin Menghapus Data ini?
          </div>
          <div class="modal-footer">
             <div class="btn-group">
@@ -230,16 +289,16 @@
   
   //fungsi menampilkan form dokumen
     function addUser() {
-      $('#title-edit').html('Tambah User'); 
-        if($('#edit-manajemen_user').css('display')=='none'){
-            $("#edit-manajemen_user").show('slow');
+
+        if($('#manajemen_user').css('display')=='none'){
+            $("#manajemen_user").show('slow');
             $(this).addClass('disabled');
             $('#btn-submit').html('Tambah');
             $('#TambahUser').css('display','none'); 
-            $('#editor-namalengkap').val('');
-            $('#editor-username').val('');
-            $('#editor-password').val('');
-            $('#editor-konfirmasipassword').val('');
+            $('#namalengkap').val('');
+            $('#username').val('');
+            $('#password').val('');
+            $('#konfirmasipassword').val('');
             $('#foto').val('');
           
         }
@@ -265,6 +324,32 @@
         });
     }
 
+     //edit Agenda
+     function editUser(id) {
+
+        if($('#edit-manajemen_user').css('display')=='block'){
+            $("#edit-manajemen_user").hide('slow');    
+        }
+        else{
+          $("#edit-manajemen_user").show('slow'); 
+        }
+
+        //$('#preloader').css('display','block');
+        $.get(base_url+"Manajemen_User/select/"+id, function(user) { 
+            //$('#preloader').css('display','none');
+            $('#btn-submit').html('Edit');
+            $('#EditUser').css('display','none'); 
+            $('#id').val(user.id);
+            $('#editor-namalengkap').val(user.fullname);
+            $('#editor-username').val(user.username);
+            $('#currjabatan').html(user.jabatan);
+            $('#currjabatan').val(user.jabatan);
+            $('#TambahUser').css('display','none');     
+            
+
+        }, 'json');
+    }
+
   //button batal
     function Batal() {
       $("#edit-manajemen_user").hide('slow');
@@ -273,6 +358,17 @@
       $('#editor-namalengkap').val('');
       $('#editor-username').val('');
       $('#editor-password').val('');
+      
+      //$("#tabel-agenda").show('slow');
+    }
+     function Batalx() {
+      $("#manajemen_user").hide('slow');
+      $('#TambahUser').css('display','block');     
+      // $('#edit-agenda').css('display','none');
+      $('#namalengkap').val('');
+      $('#username').val('');
+      $('#password').val('');
+
       
       //$("#tabel-agenda").show('slow');
     }

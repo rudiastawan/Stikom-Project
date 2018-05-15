@@ -16,7 +16,8 @@ class Surat extends CI_Controller {
 
 	public function suratMasuk(){
 		$data['currUser']=$this->session->userdata('fullname');
-		$surat['data']= $this->M_surat->select_all();
+		$data['foto']=$this->session->userdata('thumb_foto');
+		$surat['data']= $this->M_surat->select_allSM();
 		$surat['unit_pengolah']= $this->M_surat->selectAll_unit();
 		$surat['tujuanDisposisi']= $this->M_surat->select_internal();
 
@@ -27,7 +28,8 @@ class Surat extends CI_Controller {
 
 	public function disposisiMasuk(){
 		$data['currUser']=$this->session->userdata('fullname');
-		$surat['data']= $this->M_surat->select_all();
+		$data['foto']=$this->session->userdata('thumb_foto');
+		$surat['data']= $this->M_surat->select_allSM();
 
 		$this->load->view('comp/v_header',$data);
 		$this->load->view('v_RiwayatDisposisi_SM',$surat);
@@ -36,7 +38,8 @@ class Surat extends CI_Controller {
 
 	public function suratKeluar(){
 		$data['currUser']=$this->session->userdata('fullname');
-		$surat['data']= $this->M_surat->select_all();
+		$data['foto']=$this->session->userdata('thumb_foto');
+		$surat['data']= $this->M_surat->select_allSK();
 		$surat['unit_pengolah']= $this->M_surat->selectAll_unit();
 		$surat['tujuanDisposisi']= $this->M_surat->select_internal();
 
@@ -47,7 +50,8 @@ class Surat extends CI_Controller {
 
 	public function disposisiKeluar(){
 		$data['currUser']=$this->session->userdata('fullname');
-		$surat['data']= $this->M_surat->select_all();
+		$data['foto']=$this->session->userdata('thumb_foto');
+		$surat['data']= $this->M_surat->select_allSK();
 
 		$this->load->view('comp/v_header',$data);
 		$this->load->view('v_RiwayatDisposisi_SK',$surat);
@@ -81,10 +85,16 @@ class Surat extends CI_Controller {
    //          $unitpengolahandisposisi =$this->input->post('unitpengolahandisposisi');
    //          $disposisike= $this->input->post('disposisike');
             
-
+		$jenisSurat=$this->input->post('jenis_surat');
 
 		$this->M_surat->insert($this->input->post());
-		$this->tabel();
+		if ($jenisSurat=='surat masuk') {
+			$this->tabelSM();
+		}
+		if ($jenisSurat=='surat keluar') {
+			$this->tabelSK();
+		}
+		
 		
 	}
 
@@ -151,7 +161,14 @@ class Surat extends CI_Controller {
 
 
 		$this->M_surat->update($id,$data);
-		$this->tabel();
+	
+		$jenisSurat=$this->input->post('jenis_surat');
+		if ($jenisSurat=='surat masuk') {
+			$this->tabelSM();
+		}
+		if ($jenisSurat=='surat keluar') {
+			$this->tabelSK();
+		}
 		
 	}
 
@@ -232,12 +249,23 @@ class Surat extends CI_Controller {
 
 	public function delete($id){
 		$this->M_surat->delete($id);
-		$this->tabel();
+		$this->tabelSM();
+
+	}
+	public function deleteSK($id){
+		$this->M_surat->delete($id);
+		$this->tabelSK();
 
 	}
 
-	public function tabel(){
-		$surat['data']= $this->M_surat->select_all();
+	public function tabelSM(){
+		$surat['data']= $this->M_surat->select_allSM();
+
+		$this->load->view('tabel/v_tabel_surat',$surat);
+	}
+
+	public function tabelSK(){
+		$surat['data']= $this->M_surat->select_allSK();
 
 		$this->load->view('tabel/v_tabel_surat',$surat);
 	}

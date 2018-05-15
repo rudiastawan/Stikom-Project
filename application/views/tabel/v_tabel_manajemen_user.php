@@ -1,4 +1,4 @@
- <div id="tabel-pengumuman" class=" col-xs-12" style="display: block;">
+
             <div class="box box-danger">
                 <div class="box-header">
                     <div id="alert-tambah" class="alert alert-success" style="display: none;">
@@ -15,13 +15,14 @@
                 </div>          
                       <!-- /.box-header -->
                 <div class="box-body table-responsive" id="list-table-menu">
-                    <table id="table1" class="table table1 table-bordered table-hover">
+                     <table id="table1" class="table table1 table-bordered table-hover">
                         <thead>
-                            <tr style="background:  #551E1E; color: white; text-align: center;">
+                            <tr style="background:  #507ab2; color: white; text-align: center;">
 
                                 <th style="width: 5% ">No</th>
                                 <th>Nama Lengkap</th>
                                 <th>Username</th>
+                                <th>Jabatan</th>
                                 <th>Foto</th>
                                 <th>Pilihan</th>
                             </tr>
@@ -40,14 +41,15 @@
                                 <td style="text-align: center"><?php echo $i;$i++;  ?></td>
                                 <td><?php echo $row->fullname;  ?></td>
                                 <td><?php echo $row->username;  ?></td>
-                                <td>
+                                <td><?php echo $row->jabatan;  ?></td>
+                                <td style="text-align: center">
                 <a href="<?php echo $foto_url;?>" target="_blank">
                 <img src="<?php echo $thumbnail_foto_url;?>" alt="<?php echo $row->fullname ?> ">
                 </a>
               </td>
                                 <td style="text-align: center;">
                                   <div class="btn-group">
-                                    <button class="btn btn-primary btn-flat" data-toggle="tooltip" title="Edit" onclick="editPengumuman(<?php echo $row->id; ?>);"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-primary btn-flat" data-toggle="tooltip" title="Edit" onclick="editUser(<?php echo $row->id; ?>);"><i class="fa fa-pencil"></i></button>
                                     <button class="btn btn-danger btn-flat" data-toggle="tooltip" title="Delete" onclick="deleteUser(<?php echo $row->id; ?>);"><i class="fa fa-trash"></i></button>
                                   </div>
                                 </td>
@@ -69,7 +71,7 @@
                 </div>
                       
             </div>
-        </div>
+
 <script>
   $(function () {
     $("#table1").DataTable();
