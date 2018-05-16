@@ -84,7 +84,7 @@
                 <h3 id="title-edit" class="box-title">Tambah Pengumuman</h3>
                 <div class="col-xs-12">
                   <div class=" btn-group pull-right">
-                        <button onclick="Batal();" class="btn btn-default btn-flat">Batal</button>
+                        <button id="batal" onclick="Batal();" class="btn btn-default btn-flat">Batal</button>
                         <button onclick="submit(this);" id="btn-submit" class="btn btn-primary btn-flat">Tambah</button>
                   </div>
                 </div>
@@ -100,7 +100,8 @@
                      <label>:</label>
                   </div>
                   <div class="col-sm-7">
-                     <textarea name="editor-informasi" class="texteditor" id="editor-informasi"></textarea>
+                     <textarea name="editor-informasi" class="texteditor"  id="editor-informasi"></textarea>
+                   
                   </div>
                </div><br />
                <div class="row">
@@ -158,7 +159,7 @@
                                 <th>Informasi</th>
                                 <th>Mulai</th>
                                 <th>Akhir</th>
-                                <th>Pilihan</th>
+                                <th style="width: 20%">Pilihan</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -172,6 +173,7 @@
                                  <td><?php echo $row->akhirpengumuman;  ?></td>
                                 <td style="text-align: center;">
                                   <div class="btn-group">
+                                    <button class="btn btn-info btn-flat" data-toggle="tooltip" title="Lihat" onclick="viewPengumuman(<?php echo $row->id; ?>);"><i class="fa fa-eye"></i></button>
                                     <button class="btn btn-primary btn-flat" data-toggle="tooltip" title="Edit" onclick="editPengumuman(<?php echo $row->id; ?>);"><i class="fa fa-pencil"></i></button>
                                     <button class="btn btn-danger btn-flat" data-toggle="tooltip" title="Delete" onclick="deletePengumuman(<?php echo $row->id; ?>);"><i class="fa fa-trash"></i></button>
                                   </div>
@@ -283,6 +285,35 @@
         }, 'json');
     }
 
+     //lihat Pengumuman
+     function viewPengumuman(id) {
+        if($('#edit-pengumuman').css('display')=='block'){
+            $("#edit-pengumuman").hide('slow');    
+        }
+        else{
+          $("#edit-pengumuman").show('slow'); 
+        }
+         $('#batal').html('Kembali'); 
+        $('#editor-informasi').attr('readonly', true);
+        $('#editor-mulaipengumuman').attr('readonly', true);
+        $('#editor-akhirpengumuman').attr('readonly', true);
+        CKEDITOR.instances['editor-informasi'].setReadOnly(true);
+        
+
+        //$('#preloader').css('display','block');
+        $.get(base_url+"Pengumuman/select/"+id, function(pengumuman) { 
+            //$('#preloader').css('display','none');
+            $('#edit-pengumuman').show('slow');   
+            $('#btn-add').addClass('disabled');
+            $('#title-edit').html('Edit Data Pengumuman'); 
+            
+            $('#btn-submit').css('display','none'); 
+            $('#editor-informasi').val(pengumuman.informasi);
+            $('#editor-mulaipengumuman').val(pengumuman.mulaipengumuman);
+            $('#editor-akhirpengumuman').val(pengumuman.akhirpengumuman);
+        }, 'json');
+    }
+
 
     //hapus Agenda
     function deletePengumuman(id) {
@@ -305,6 +336,9 @@
 
   //button batal
     function Batal() {
+       $('#btn-submit').css('display','block'); 
+      $('#batal').html('Batal');
+      CKEDITOR.instances['editor-informasi'].setReadOnly(false);
       $("#edit-pengumuman").hide('slow');
       $('#TambahPengumuman').css('display','block');     
       // $('#edit-agenda').css('display','none');

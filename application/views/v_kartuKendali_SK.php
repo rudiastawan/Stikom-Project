@@ -78,7 +78,8 @@
 
     <div id="main-content" class="row">
 
-
+         <div id="view" class=" col-xs-12" >
+        </div>
 
         <div id="edit-SM" class=" col-xs-12" style="display: none;">
             <div class="box box-success">
@@ -381,7 +382,7 @@
                                 <th width="14%">Asal Surat</th>
                                 <th width="14%">Tujuan surat</th>
                                 <th>Sifat surat</th>
-                                <th width="10%">Pilihan</th>
+                                <th width="15%">Pilihan</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -399,6 +400,7 @@
                                 <td><?php echo $row->sifat_surat;  ?></td>
                                 <td style="text-align: center;">
                                   <div class="btn-group">
+                                    <button class="btn btn-info btn-flat" data-toggle="tooltip" title="Lihat" onclick="viewSurat(<?php echo $row->id_surat; ?>);"><i class="fa fa-eye"></i></button>
                                     <button class="btn btn-primary btn-flat" data-toggle="tooltip" title="Edit" onclick="editAgenda(<?php echo $row->id_surat; ?>);"><i class="fa fa-pencil"></i></button>
                                     <button class="btn btn-danger btn-flat" data-toggle="tooltip" title="Delete" onclick="deleteSurat(<?php echo $row->id_surat; ?>);"><i class="fa fa-trash"></i></button>
                                   </div>
@@ -595,11 +597,41 @@
          return false;
     }
 
+     //edit Agenda
+     function viewSurat(id) {
+
+       $("#tabel-SM").hide();
+      
+      $.ajax({
+           url:"<?php echo base_url();?>Surat/view/"+id+"",
+           success: function(response){
+           $("#view").html(response);
+           
+           },
+           dataType:"html"
+         });
+      $("#view").show('slow');
+         return false;
+
+       
+    }
 
 
 
   //button batal
     function Batal() {
+      $("#tabel-SM").show();
+      $("#edit-SM").hide();
+      $('#form_surat').trigger("reset");
+      $('#TambahSM').css('display','block');     
+      // $('#edit-agenda').css('display','none');
+      
+      //$("#tabel-agenda").show('slow');
+    }
+
+      //button batal
+    function Kembali() {
+      $("#view").hide();
       $("#tabel-SM").show();
       $("#edit-SM").hide();
       $('#form_surat').trigger("reset");

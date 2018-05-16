@@ -84,7 +84,7 @@
                 <h3 id="title-edit" class="box-title">Tambah Data Agenda</h3>
                 <div class="col-xs-12">
                   <div class=" btn-group pull-right">
-                        <button onclick="Batal();" class="btn btn-default btn-flat">Batal</button>
+                        <button onclick="Batal();" id="batal" class="btn btn-default btn-flat">Batal</button>
                         <button onclick="submit(this);" id="btn-submit" class="btn btn-primary btn-flat">Tambah</button>
                   </div>
                 </div>
@@ -166,8 +166,9 @@
                                 <td><?php echo $row->keterangan;  ?></td>
                                 <td style="text-align: center;">
                                   <div class="btn-group">
+                                     <button class="btn btn-info btn-flat" data-toggle="tooltip" title="Lihat" onclick="viewAgenda(<?php echo $row->id; ?>);"><i class="fa fa-eye"></i></button>
                                     <button class="btn btn-primary btn-flat" data-toggle="tooltip" title="Edit" onclick="editAgenda(<?php echo $row->id; ?>);"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-danger btn-flat" data-toggle="tooltip" title="Delete" onclick="deleteAgenda(<?php echo $row->id; ?>);"><i class="fa fa-trash"></i></button>
+                                    <button class="btn btn-danger btn-flat" data-toggle="tooltip" title="Hapus" onclick="deleteAgenda(<?php echo $row->id; ?>);"><i class="fa fa-trash"></i></button>
                                   </div>
                                 </td>
                             </tr> 
@@ -270,14 +271,58 @@
         else{
           $("#edit-agenda").show('slow'); 
         }
+        $('#editor-keterangan').attr('readonly', false);
+        $('#editor-tanggal').attr('readonly', false);
+        $('#editor-waktu').attr('readonly', false);
+        $('#editor-kegiatan').attr('readonly', false);
+        $('#editor-tempat').attr('readonly', false);
+        $('#editor-unit').attr('readonly', false);
+        $('#editor-hadir').attr('readonly', false);
+
+        //$('#preloader').css('display','block');
+        $.get(base_url+"Agenda/select/"+id, function(agenda) { 
+            //$('#preloader').css('display','none');
+            $('#btn-submit').css('display','block'); 
+            $('#edit-agenda').show('slow');   
+            $('#btn-add').addClass('disabled');
+            $('#title-edit').html('Edit Data Agenda'); 
+            $('#btn-submit').html('Edit');
+            $('#editor-keterangan').attr('data-link', agenda.id);
+            $('#editor-tanggal').val(agenda.tanggal);
+            $('#editor-waktu').val(agenda.waktu);
+            $('#editor-kegiatan').val(agenda.kegiatan);
+            $('#editor-tempat').val(agenda.tempat);
+            $('#editor-unit').val(agenda.unit_kerja);
+            $('#editor-hadir').val(agenda.hadir);
+            $('#editor-keterangan').val(agenda.keterangan);
+        }, 'json');
+    }
+
+    //edit Agenda
+     function viewAgenda(id) {
+        if($('#edit-agenda').css('display')=='block'){
+            $("#edit-agenda").hide('slow');    
+        }
+        else{
+          $("#edit-agenda").show('slow'); 
+        }
+        $('#batal').html('Kembali'); 
+        $('#editor-keterangan').attr('readonly', true);
+        $('#editor-tanggal').attr('readonly', true);
+        $('#editor-waktu').attr('readonly', true);
+        $('#editor-kegiatan').attr('readonly', true);
+        $('#editor-tempat').attr('readonly', true);
+        $('#editor-unit').attr('readonly', true);
+        $('#editor-hadir').attr('readonly', true);
+
 
         //$('#preloader').css('display','block');
         $.get(base_url+"Agenda/select/"+id, function(agenda) { 
             //$('#preloader').css('display','none');
             $('#edit-agenda').show('slow');   
             $('#btn-add').addClass('disabled');
-            $('#title-edit').html('Edit Data Agenda'); 
-            $('#btn-submit').html('Edit');
+            $('#title-edit').html(' Data Agenda'); 
+            $('#btn-submit').css('display','none'); 
             $('#editor-keterangan').attr('data-link', agenda.id);
             $('#editor-tanggal').val(agenda.tanggal);
             $('#editor-waktu').val(agenda.waktu);
@@ -311,6 +356,7 @@
 
   //button batal
     function Batal() {
+      $('#batal').html('Batal');
       $("#edit-agenda").hide('slow');
       $('#TambahAgenda').css('display','block');     
       // $('#edit-agenda').css('display','none');

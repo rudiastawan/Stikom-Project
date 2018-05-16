@@ -283,6 +283,13 @@ class Surat extends CI_Controller {
 
 	}
 
+	public function view($id){
+
+		$data['surat']=$this->M_surat->select($id)->result();
+		$this->load->view('select/v_detaiSurat',$data);
+
+	}
+
 
 
 }

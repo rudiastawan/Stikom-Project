@@ -82,7 +82,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profil</a>
+                  <a href="<?php echo base_url('Manajemen_User/Profil') ?>" class="btn btn-default btn-flat">Profil</a>
                 </div>
                 <div class="pull-right">
                   <a id="logout" href="<?php echo base_url('Login/unauth') ?>" class="btn btn-default btn-flat">Keluar</a>
