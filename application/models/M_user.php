@@ -5,7 +5,7 @@ class M_user extends CI_Model {
 
 	public function getUserLogin($user,$pass)
 	{
-		$this->db->select('id,fullname,username,thumb_foto');
+		$this->db->select('id,fullname,username,jabatan,thumb_foto');
 		$this->db->where('username',$user);
 		$this->db->where('password',$pass);
 		return $this->db->get('tb_user');

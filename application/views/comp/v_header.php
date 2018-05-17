@@ -111,7 +111,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
             <div class="info">
                 <p style="color: #fff;"><?php echo $currUser; ?></p>
-                <a href="#">Kepala Sub Bagian Perencanaan dan Pelaporan </a>
+                <a href="#"><?php echo $jabatan; ?> </a>
             </div>
             
         </div>

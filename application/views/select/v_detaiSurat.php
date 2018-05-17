@@ -116,7 +116,7 @@
                   <div class="col-xs-12 form-group">
                       <label class="col-sm-3 control-label" style="text-align:right;">File surat</label>
                      <div class="col-sm-9 form-group" style="text-align:left;">
-                      : <a target="_blank" href="<?php echo base_url();?>uploads/lampiran/<?= $data->file_surat ?>"  class="btn btn-sm btn-default btn-flat">Lihat</a>                                     
+                      : <a target="_blank" href="<?php echo base_url();?>uploads/surat/<?= $data->file_surat ?>"  class="btn btn-sm btn-default btn-flat">Lihat</a>                                     
                      </div>
                   </div>
 
@@ -143,7 +143,7 @@
                    <div class="col-xs-12 form-group">
                       <label class="col-sm-3 control-label" style="text-align:right;">Unggah Berkas</label>
                      <div class="col-sm-9 form-group" style="text-align:left;">
-                       : <a target="_blank" href="<?php echo base_url();?>uploads/lampiran/<?= $data->file_pengantar ?>"  class="btn btn-sm btn-default btn-flat">Lihat</a>                                  
+                       : <a target="_blank" href="<?php echo base_url();?>uploads/pengantar/<?= $data->file_pengantar ?>"  class="btn btn-sm btn-default btn-flat">Lihat</a>                                  
                      </div>
                   </div>
                   <div class="col-xs-12 form-group">
@@ -183,7 +183,7 @@
                   <div class="col-xs-12 form-group">
                       <label class="col-sm-3 control-label" style="text-align:right;">File Disposisi</label>
                      <div class="col-sm-9 form-group" style="text-align:left;">
-                      : <a target="_blank" href="<?php echo base_url();?>uploads/lampiran/<?= $data->file_disposisi ?>"  class="btn btn-sm btn-default btn-flat">Lihat</a>                                
+                      : <a target="_blank" href="<?php echo base_url();?>uploads/disposisi/<?= $data->file_disposisi ?>"  class="btn btn-sm btn-default btn-flat">Lihat</a>                                
                      </div>
                   </div>
                   <div class="col-xs-12 form-group">

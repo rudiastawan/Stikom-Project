@@ -7,6 +7,7 @@
             
           </a>
         </li>
+        <?php if ($jabatan=='Operator'||$jabatan=='Sekretaris'||$jabatan=='Kepala') { ?>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-calendar"></i>
@@ -20,6 +21,7 @@
             <li><a href="<?php echo base_url('Pengumuman'); ?>"><i class="fa fa-circle-o"></i> Pengumuman</a></li>
           </ul>
         </li>
+         <?php } ?>
          <li class=" treeview">
           <a href="#">
             <i class="fa fa-download"></i>
@@ -46,12 +48,14 @@
             <li class="active"><a href="<?php echo base_url('Surat/disposisiKeluar'); ?>"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a>
           </ul>
         </li>
+        <?php if ($jabatan=='Operator') { ?>
          <li class="treeview">
           <a href="<?php echo base_url('Manajemen_User'); ?>">
             <i class="fa fa-user-circle-o"></i> <span>Manajemen User</span>
             
           </a>
         </li>
+         <?php } ?>
       </ul>
     </section>
     <!-- /.sidebar -->

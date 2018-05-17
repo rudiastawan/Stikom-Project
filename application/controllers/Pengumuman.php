@@ -12,6 +12,7 @@ class Pengumuman extends CI_Controller {
 	
 	public function index(){
 		$data['currUser']=$this->session->userdata('fullname');
+		$data['jabatan']=$this->session->userdata('jabatan');
 		$pengumuman['data']= $this->M_pengumuman->select_all();
 		$data['foto']=$this->session->userdata('thumb_foto');
 

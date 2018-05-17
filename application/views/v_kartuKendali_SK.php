@@ -7,6 +7,7 @@
             
           </a>
         </li>
+        <?php if ($jabatan=='Operator'||$jabatan=='Sekretaris'||$jabatan=='Kepala') { ?>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-calendar"></i>
@@ -20,6 +21,7 @@
             <li><a href="<?php echo base_url('Pengumuman'); ?>"><i class="fa fa-circle-o"></i> Pengumuman</a></li>
           </ul>
         </li>
+        <?php } ?>
          <li class=" treeview">
           <a href="#">
             <i class="fa fa-download"></i>
@@ -46,12 +48,14 @@
             <li><a href="<?php echo base_url('Surat/disposisiKeluar'); ?>"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a>
           </ul>
         </li>
+          <?php if ($jabatan=='Operator') { ?>
          <li class="treeview">
           <a href="<?php echo base_url('Manajemen_User'); ?>">
             <i class="fa fa-user-circle-o"></i> <span>Manajemen User</span>
             
           </a>
         </li>
+         <?php } ?>
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -364,8 +368,10 @@
                 <strong>Berhasil!</strong> Data Berhasil Dihapus !!
             </div>
                     <div class="btn-group pull-right">
-                        <button class="btn btn-default btn-flat" title="print"><i class="fa fa-print"></i> Print</button>
+                        <a href="<?php echo base_url('Surat/printSuratKeluar'); ?>" class="btn btn-default btn-flat" title="print"><i class="fa fa-print"></i> Print</a>
+                        <?php if ($jabatan!='Kepala') { ?>
                         <button id="TambahSM" onclick="addSuratM();" class="btn btn-success btn-flat" title="tambah surat keluar"><i class="fa fa-pencil-square-o"></i> Tambah Data Surat Keluar</button>
+                        <?php } ?>
                     </div>
                 </div>          
                       <!-- /.box-header -->
@@ -401,8 +407,10 @@
                                 <td style="text-align: center;">
                                   <div class="btn-group">
                                     <button class="btn btn-info btn-flat" data-toggle="tooltip" title="Lihat" onclick="viewSurat(<?php echo $row->id_surat; ?>);"><i class="fa fa-eye"></i></button>
+                                    <?php if ($jabatan!='Kepala') { ?>
                                     <button class="btn btn-primary btn-flat" data-toggle="tooltip" title="Edit" onclick="editAgenda(<?php echo $row->id_surat; ?>);"><i class="fa fa-pencil"></i></button>
                                     <button class="btn btn-danger btn-flat" data-toggle="tooltip" title="Delete" onclick="deleteSurat(<?php echo $row->id_surat; ?>);"><i class="fa fa-trash"></i></button>
+                                    <?php } ?>
                                   </div>
                                 </td>
                             </tr> 

@@ -7,6 +7,7 @@
             
           </a>
         </li>
+        <?php if ($jabatan=='Operator'||$jabatan=='Sekretaris'||$jabatan=='Kepala') { ?>
         <li class="active treeview">
           <a href="#">
             <i class="fa fa-calendar"></i>
@@ -20,6 +21,7 @@
             <li class="active"><a href="<?php echo base_url('Pengumuman'); ?>"><i class="fa fa-circle-o"></i> Pengumuman</a></li>
           </ul>
         </li>
+         <?php } ?>
          <li class="treeview">
           <a href="#">
             <i class="fa fa-download"></i>
@@ -46,12 +48,14 @@
             <li><a href="<?php echo base_url('Surat/disposisiKeluar'); ?>"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a>
           </ul>
         </li>
+         <?php if ($jabatan=='Operator') { ?>
          <li class="treeview">
           <a href="<?php echo base_url('Manajemen_User'); ?>">
             <i class="fa fa-user-circle-o"></i> <span>Manajemen User</span>
             
           </a>
         </li>
+         <?php } ?>
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -146,7 +150,9 @@
 
                     <div class="btn-group pull-right">
                         <button class="btn btn-default btn-flat" title="print"><i class="fa fa-print"></i> Print</button>
+                        <?php if ($jabatan!='Kepala') { ?>
                         <button id="TambahPengumuman" onclick="addPengumuman();" class="btn btn-success btn-flat" title="tambah pengumuman"><i class="fa fa-pencil-square-o"></i> Tambah Pengumuman</button>
+                        <?php } ?>
                     </div>
                 </div>          
                       <!-- /.box-header -->
@@ -174,8 +180,11 @@
                                 <td style="text-align: center;">
                                   <div class="btn-group">
                                     <button class="btn btn-info btn-flat" data-toggle="tooltip" title="Lihat" onclick="viewPengumuman(<?php echo $row->id; ?>);"><i class="fa fa-eye"></i></button>
+
+                                    <?php if ($jabatan=='Operator'||$jabatan=='Sekretaris') { ?>
                                     <button class="btn btn-primary btn-flat" data-toggle="tooltip" title="Edit" onclick="editPengumuman(<?php echo $row->id; ?>);"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-danger btn-flat" data-toggle="tooltip" title="Delete" onclick="deletePengumuman(<?php echo $row->id; ?>);"><i class="fa fa-trash"></i></button>
+                                    <button class="btn btn-danger btn-flat" data-toggle="tooltip" title="Hapus" onclick="deletePengumuman(<?php echo $row->id; ?>);"><i class="fa fa-trash"></i></button>
+                                    <?php } ?>
                                   </div>
                                 </td>
                             </tr> 

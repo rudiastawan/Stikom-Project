@@ -6,6 +6,7 @@
             
           </a>
         </li>
+         <?php if ($jabatan=='Operator'||$jabatan=='Sekretaris'||$jabatan=='Kepala') { ?>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-calendar"></i>
@@ -19,6 +20,7 @@
             <li><a href="<?php echo base_url('Pengumuman'); ?>"><i class="fa fa-circle-o"></i> Pengumuman</a></li>
           </ul>
         </li>
+         <?php } ?>
          <li class="treeview">
           <a href="#">
             <i class="fa fa-download"></i>
@@ -45,12 +47,14 @@
             <li><a href="<?php echo base_url('Surat/disposisiKeluar'); ?>"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a></li>
           </ul>
         </li>
+        <?php if ($jabatan=='Operator') { ?>
         <li class="active">
           <a href="<?php echo base_url('Manajemen_User'); ?>">
             <i class="fa fa-user-circle-o"></i> <span>Manajemen User</span>
             
           </a>
         </li>
+         <?php } ?>
 
 
       </ul>
@@ -177,7 +181,7 @@
                 <div class="box-header">
                   
                     <div class="btn-group pull-right">
-                        <button class="btn btn-default btn-flat" title="print"><i class="fa fa-print"></i> Print</button>
+                       
                         <button id="TambahUser" onclick="addUser();" class="btn btn-success btn-flat" title="Tambah User"><i class="fa fa-pencil-square-o"></i> Tambah User</button>
                     </div>
                 </div>          

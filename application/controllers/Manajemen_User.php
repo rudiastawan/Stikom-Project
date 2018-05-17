@@ -14,6 +14,7 @@ class Manajemen_User extends CI_Controller {
 
 	public function index(){
 		$data['currUser']=$this->session->userdata('fullname');
+		$data['jabatan']=$this->session->userdata('jabatan');
 		$data['foto']=$this->session->userdata('thumb_foto');
 		$manajemen_user['data']= $this->M_user->select_all();
 		$this->load->view('comp/v_header',$data);
@@ -23,6 +24,7 @@ class Manajemen_User extends CI_Controller {
 
 	public function profil(){
 		$data['currUser']=$this->session->userdata('fullname');
+		$data['jabatan']=$this->session->userdata('jabatan');
 		$data['foto']=$this->session->userdata('thumb_foto');
 		$data['profil']=$this->M_user->select_profil($this->session->userdata('username'))->result();
 

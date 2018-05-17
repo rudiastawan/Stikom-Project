@@ -7,6 +7,8 @@
             
           </a>
         </li>
+        <?php
+        if ($jabatan=='Operator'||$jabatan=='Sekretaris'||$jabatan=='Kepala') { ?>
         <li class="active treeview">
           <a href="#">
             <i class="fa fa-calendar"></i>
@@ -15,10 +17,13 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
-            <li class="active"><a href="<?php echo base_url('Agenda'); ?>"><i class="fa fa-circle-o"></i> Agenda Kerja</a></li>
-            <li><a href="<?php echo base_url('Pengumuman'); ?>"><i class="fa fa-circle-o"></i> Pengumuman</a></li>
+        
+            <ul class="treeview-menu">
+              <li class="active"><a href="<?php echo base_url('Agenda'); ?>"><i class="fa fa-circle-o"></i> Agenda Kerja</a></li>
+              <li><a href="<?php echo base_url('Pengumuman'); ?>"><i class="fa fa-circle-o"></i> Pengumuman</a></li>
           </ul>
+        <?php } ?>
+         
         </li>
          <li class="treeview">
           <a href="#">
@@ -46,12 +51,14 @@
             <li><a href="<?php echo base_url('Surat/disposisiKeluar'); ?>"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a>
           </ul>
         </li>
+        <?php if ($jabatan=='Operator') { ?>
         <li class="treeview">
           <a href="<?php echo base_url('Manajemen_User'); ?>">
             <i class="fa fa-user-circle-o"></i> <span>Manajemen User</span>
             
           </a>
         </li>
+        <?php } ?>
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -131,7 +138,9 @@
                 <div class="box-header">
                     <div class="btn-group pull-right">
                         <button class="btn btn-default btn-flat" title="print"><i class="fa fa-print"></i> Print</button>
+                        <?php if ($jabatan!='Kepala') { ?>
                         <button id="TambahAgenda" onclick="addAgenda();" class="btn btn-success btn-flat" title="tambah agenda"><i class="fa fa-pencil-square-o"></i> Tambah Agenda</button>
+                        <?php } ?>
                     </div>
                 </div>          
                       <!-- /.box-header #551E1E-->
@@ -167,8 +176,11 @@
                                 <td style="text-align: center;">
                                   <div class="btn-group">
                                      <button class="btn btn-info btn-flat" data-toggle="tooltip" title="Lihat" onclick="viewAgenda(<?php echo $row->id; ?>);"><i class="fa fa-eye"></i></button>
+
+                                  <?php if ($jabatan=='Operator'||$jabatan=='Sekretaris') { ?>
                                     <button class="btn btn-primary btn-flat" data-toggle="tooltip" title="Edit" onclick="editAgenda(<?php echo $row->id; ?>);"><i class="fa fa-pencil"></i></button>
                                     <button class="btn btn-danger btn-flat" data-toggle="tooltip" title="Hapus" onclick="deleteAgenda(<?php echo $row->id; ?>);"><i class="fa fa-trash"></i></button>
+                                  <?php } ?>
                                   </div>
                                 </td>
                             </tr> 

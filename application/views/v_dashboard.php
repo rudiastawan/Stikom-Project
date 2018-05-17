@@ -7,6 +7,8 @@
             
           </a>
         </li>
+         <?php
+        if ($jabatan=='Operator'||$jabatan=='Sekretaris'||$jabatan=='Kepala') { ?>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-calendar"></i>
@@ -15,10 +17,12 @@
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
+         
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url('Agenda'); ?>"><i class="fa fa-circle-o"></i> Agenda Kerja</a></li>
             <li><a href="<?php echo base_url('Pengumuman'); ?>"><i class="fa fa-circle-o"></i> Pengumuman</a></li>
           </ul>
+            <?php } ?>
         </li>
          <li class="treeview">
           <a href="#">
@@ -46,13 +50,14 @@
             <li><a href="<?php echo base_url('Surat/disposisiKeluar'); ?>"><i class="fa fa-circle-o"></i> Riwayat Disposisi</a>
           </ul>
         </li>
+         <?php if ($jabatan=='Operator') { ?>
         <li class="">
           <a href="<?php echo base_url('Manajemen_User'); ?>">
             <i class="fa fa-user-circle-o"></i> <span>Manajemen User</span>
             
           </a>
         </li>
-
+          <?php } ?>
 
       </ul>
     </section>
@@ -79,6 +84,7 @@
             <div class="icon">
               <i class="fa fa-inbox"></i>
             </div>
+
             <a href="<?php echo base_url('Surat/suratMasuk'); ?>" class="small-box-footer">Lihat <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
@@ -94,6 +100,7 @@
             <a href="<?php echo base_url('Surat/suratKeluar'); ?>" class="small-box-footer">Lihat <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
+         <?php if ($jabatan=='Operator'||$jabatan=='Sekretaris'||$jabatan=='Kepala') { ?>
         <div class="col-lg-6 col-xs-12">
           <div class="small-box bg-aqua">
             <div class="inner">
@@ -103,9 +110,12 @@
             <div class="icon">
               <i class="fa fa-calendar-plus-o"></i>
             </div>
+            
             <a href="<?php echo base_url('Agenda'); ?>" class="small-box-footer">Lihat <i class="fa fa-arrow-circle-right"></i></a>
+           
           </div>
         </div>
+
         <!-- ./col -->
         <div class="col-lg-6 col-xs-12">
           <!-- small box -->
@@ -120,6 +130,7 @@
             <a href="<?php echo base_url('Pengumuman'); ?>" class="small-box-footer">Lihat <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
+         <?php } ?>
         <!-- ./col -->
       </div>
      

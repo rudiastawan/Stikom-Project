@@ -32,7 +32,7 @@
   </div>
   </div>
   
-  <ul class="bg-bubbles">
+ <!--  <ul class="bg-bubbles">
     <li></li>
     <li></li>
     <li></li>
@@ -43,7 +43,7 @@
     <li></li>
     <li></li>
     <li></li>
-  </ul>
+  </ul> -->
 </div>
   <script src='<?php echo base_url('assets/custom/css/jquery.min.js'); ?>'></script>
 

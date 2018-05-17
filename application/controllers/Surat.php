@@ -16,6 +16,7 @@ class Surat extends CI_Controller {
 
 	public function suratMasuk(){
 		$data['currUser']=$this->session->userdata('fullname');
+		$data['jabatan']=$this->session->userdata('jabatan');
 		$data['foto']=$this->session->userdata('thumb_foto');
 		$surat['data']= $this->M_surat->select_allSM();
 		$surat['unit_pengolah']= $this->M_surat->selectAll_unit();
@@ -28,6 +29,7 @@ class Surat extends CI_Controller {
 
 	public function disposisiMasuk(){
 		$data['currUser']=$this->session->userdata('fullname');
+		$data['jabatan']=$this->session->userdata('jabatan');
 		$data['foto']=$this->session->userdata('thumb_foto');
 		$surat['data']= $this->M_surat->select_allSM();
 
@@ -38,6 +40,7 @@ class Surat extends CI_Controller {
 
 	public function suratKeluar(){
 		$data['currUser']=$this->session->userdata('fullname');
+		$data['jabatan']=$this->session->userdata('jabatan');
 		$data['foto']=$this->session->userdata('thumb_foto');
 		$surat['data']= $this->M_surat->select_allSK();
 		$surat['unit_pengolah']= $this->M_surat->selectAll_unit();
@@ -50,6 +53,7 @@ class Surat extends CI_Controller {
 
 	public function disposisiKeluar(){
 		$data['currUser']=$this->session->userdata('fullname');
+		$data['jabatan']=$this->session->userdata('jabatan');
 		$data['foto']=$this->session->userdata('thumb_foto');
 		$surat['data']= $this->M_surat->select_allSK();
 
@@ -287,6 +291,18 @@ class Surat extends CI_Controller {
 
 		$data['surat']=$this->M_surat->select($id)->result();
 		$this->load->view('select/v_detaiSurat',$data);
+
+	}
+	public function printSuratMasuk(){
+		$surat['data']= $this->M_surat->select_allSM();
+		
+		$this->load->view('v_printSurat',$surat);
+
+	}
+	public function printSuratKeluar(){
+		$surat['data']= $this->M_surat->select_allSK();
+		
+		$this->load->view('v_printSurat',$surat);
 
 	}
 
