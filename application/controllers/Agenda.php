@@ -66,9 +66,17 @@ class Agenda extends CI_Controller {
 		$this->tabel();
 
 	}
+	public function printAgenda(){
+		$agenda['data']= $this->M_agenda->select_all();
+		
+		$this->load->view('v_printAgenda',$agenda);
+
+	}
+
 
 	public function tabel(){
 		$agenda['data']= $this->M_agenda->select_all();
+		$agenda['jabatan']=$this->session->userdata('jabatan');
 
 		$this->load->view('tabel/v_tabel_agenda',$agenda);
 	}

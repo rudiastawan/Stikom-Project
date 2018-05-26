@@ -54,10 +54,18 @@ class Pengumuman extends CI_Controller {
 
 	}
 
-	public function tabel(){
+	public function printPengumuman(){
 		$pengumuman['data']= $this->M_pengumuman->select_all();
+		
+		$this->load->view('v_printPengumuman',$pengumuman);
 
-		$this->load->view('tabel/v_tabel_pengumuman',$pengumuman);
+	}
+
+	public function tabel(){
+		$data['jabatan']=$this->session->userdata('jabatan');
+		$data['data']= $this->M_pengumuman->select_all();
+
+		$this->load->view('tabel/v_tabel_pengumuman',$data);
 	}
 }
 

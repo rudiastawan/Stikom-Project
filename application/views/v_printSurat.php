@@ -39,7 +39,7 @@ td {
                         <?php foreach ($data->result() as $row): ?>
                             <tr valign="top" >
                                 <td style="width: 20px "> <?php echo $i;$i++;  ?></td>
-                                <td style="width: 98px "> <?php echo $row->no_surat;  ?></td>
+                                <td  style="width: 98px "> <?php echo $row->no_surat;  ?></td>
                                 <td style="width: 80px "> <?php echo $row->index_surat;  ?></td>
                                 <td style="width: 95px "> <?php echo $row->tanggal_surat;  ?></td> 
                                 <td style="width: 95px "> <?php echo $row->tanggal_surat;  ?></td>

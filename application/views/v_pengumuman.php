@@ -149,7 +149,7 @@
             </div>
 
                     <div class="btn-group pull-right">
-                        <button class="btn btn-default btn-flat" title="print"><i class="fa fa-print"></i> Print</button>
+                         <a href="<?php echo base_url('Pengumuman/printPengumuman'); ?>" class="btn btn-default btn-flat" title="print"><i class="fa fa-print"></i> Print</a>
                         <?php if ($jabatan!='Kepala') { ?>
                         <button id="TambahPengumuman" onclick="addPengumuman();" class="btn btn-success btn-flat" title="tambah pengumuman"><i class="fa fa-pencil-square-o"></i> Tambah Pengumuman</button>
                         <?php } ?>

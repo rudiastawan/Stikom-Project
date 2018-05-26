@@ -411,7 +411,7 @@
 
                                     <?php if ($jabatan!='Kepala') { ?>
                                     <button class="btn btn-sm btn-primary btn-flat" data-toggle="tooltip" title="Edit" onclick="editAgenda(<?php echo $row->id_surat; ?>);"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-sm btn-danger btn-flat" data-toggle="tooltip" title="Delete" onclick="deleteSurat(<?php echo $row->id_surat; ?>);"><i class="fa fa-trash"></i></button>
+                                    <!-- <button class="btn btn-sm btn-danger btn-flat" data-toggle="tooltip" title="Delete" onclick="deleteSurat(<?php echo $row->id_surat; ?>);"><i class="fa fa-trash"></i></button> -->
                                     <?php } ?>
                                   </div>
                                 </td>

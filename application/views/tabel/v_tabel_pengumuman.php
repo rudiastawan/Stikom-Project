@@ -9,15 +9,18 @@
                         <strong>Berhasil!</strong> Data Berhasil Dihapus !!
                     </div>
                     <div class="btn-group pull-right">
-                        <button class="btn btn-default btn-flat" title="print"><i class="fa fa-print"></i> Print</button>
-                        <button id="TambahAgenda" onclick="addPengumuman();" class="btn btn-success btn-flat" title="tambah agenda"><i class="fa fa-pencil-square-o"></i> Tambah Agenda</button>
+                        <a href="<?php echo base_url('Pengumuman/printPengumuman'); ?>" class="btn btn-default btn-flat" title="print"><i class="fa fa-print"></i> Print</a>
+                        <?php if ($jabatan!='Kepala') { ?>
+                        <button id="TambahPengumuman" onclick="addPengumuman();" class="btn btn-success btn-flat" title="tambah pengumuman"><i class="fa fa-pencil-square-o"></i> Tambah Pengumuman</button>
+                        <?php } ?>
                     </div>
                 </div>          
                       <!-- /.box-header -->
                 <div class="box-body table-responsive" id="list-table-menu">
                     <table id="table1" class="table table1 table-bordered table-hover">
                         <thead>
-                            <tr style="background:  #551E1E; color: white; text-align: center;">
+                             <tr style="background:  #507ab2; color: white; text-align: center;">
+
 
                                 <th style="width: 5% ">No</th>
                                 <th>Informasi</th>
@@ -37,6 +40,7 @@
                                  <td><?php echo $row->akhirpengumuman;  ?></td>
                                 <td style="text-align: center;">
                                   <div class="btn-group">
+                                    <button class="btn btn-info btn-flat" data-toggle="tooltip" title="Lihat" onclick="viewPengumuman(<?php echo $row->id; ?>);"><i class="fa fa-eye"></i></button>
                                     <button class="btn btn-primary btn-flat" data-toggle="tooltip" title="Edit" onclick="editPengumuman(<?php echo $row->id; ?>);"><i class="fa fa-pencil"></i></button>
                                     <button class="btn btn-danger btn-flat" data-toggle="tooltip" title="Delete" onclick="deletePengumuman(<?php echo $row->id; ?>);"><i class="fa fa-trash"></i></button>
                                   </div>

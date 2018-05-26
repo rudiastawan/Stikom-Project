@@ -137,7 +137,7 @@
             <div class="box box-primary">
                 <div class="box-header">
                     <div class="btn-group pull-right">
-                        <button class="btn btn-default btn-flat" title="print"><i class="fa fa-print"></i> Print</button>
+                        <a href="<?php echo base_url('Agenda/printAgenda'); ?>" class="btn btn-default btn-flat" title="print"><i class="fa fa-print"></i> Print</a>
                         <?php if ($jabatan!='Kepala') { ?>
                         <button id="TambahAgenda" onclick="addAgenda();" class="btn btn-success btn-flat" title="tambah agenda"><i class="fa fa-pencil-square-o"></i> Tambah Agenda</button>
                         <?php } ?>
@@ -150,14 +150,14 @@
                             <tr style="background:  #507ab2; color: white; text-align: center;">
 
                                 <th style="width: 5% ">No</th>
-                                <th>Tanggal</th>
-                                <th>Waktu</th>
-                                <th>Kegiatan</th>
-                                <th>Tempat</th>
-                                <th>Unit Kerja</th>
-                                <th>Hadir</th>
-                                <th>Keterangan</th>
-                                <th>Pilihan</th>
+                                <th style="width: 8%">Tanggal</th>
+                                <th style="width: 8%">Waktu</th>
+                                <th style="width: 20%">Kegiatan</th>
+                                <th style="width: 10%">Tempat</th>
+                                <th style="width: 12%">Unit Kerja</th>
+                                <th style="width: 10%">Hadir</th>
+                                <th style="width: 12%">Keterangan</th>
+                                <th style="width: 15% ">Pilihan</th>
                             </tr>
                         </thead>
                         <tbody>

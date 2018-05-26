@@ -9,8 +9,10 @@
                         <strong>Berhasil!</strong> Data Berhasil Dihapus !!
                     </div>
                     <div class="btn-group pull-right">
-                        <button class="btn btn-default btn-flat" title="print"><i class="fa fa-print"></i> Print</button>
+                         <a href="<?php echo base_url('Agenda/printAgenda'); ?>" class="btn btn-default btn-flat" title="print"><i class="fa fa-print"></i> Print</a>
+                        <?php if ($jabatan!='Kepala') { ?>
                         <button id="TambahAgenda" onclick="addAgenda();" class="btn btn-success btn-flat" title="tambah agenda"><i class="fa fa-pencil-square-o"></i> Tambah Agenda</button>
+                        <?php } ?>
                     </div>
                 </div>          
                       <!-- /.box-header -->
@@ -45,6 +47,8 @@
                                 <td><?php echo $row->keterangan;  ?></td>
                                 <td style="text-align: center;">
                                   <div class="btn-group">
+                                    <button class="btn btn-info btn-flat" data-toggle="tooltip" title="Lihat" onclick="viewAgenda(<?php echo $row->id; ?>);"><i class="fa fa-eye"></i></button>
+
                                     <button class="btn btn-primary btn-flat" data-toggle="tooltip" title="Edit" onclick="editAgenda(<?php echo $row->id; ?>);"><i class="fa fa-pencil"></i></button>
                                     <button class="btn btn-danger btn-flat" data-toggle="tooltip" title="Delete" onclick="deleteAgenda(<?php echo $row->id; ?>);"><i class="fa fa-trash"></i></button>
                                   </div>
