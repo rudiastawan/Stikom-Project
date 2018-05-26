@@ -377,19 +377,19 @@
                 </div>          
                       <!-- /.box-header -->
                 <div class="box-body table-responsive" id="list-table-menu">
-                    <table id="table1" class="table table1 table-bordered table-hover">
+                    <table style="font-size: 13px" id="table1" class="table table1 table-bordered table-hover">
                         <thead>
                             <tr style="background:  #42a34a; color: white; text-align: center;">
 
-                                <th style="width: 5% ">No</th>
-                                <th>No surat</th>
-                                <th>Index surat</th>
-                                <th>Tanggal surat</th>
-                                <th>Periode surat</th>
-                                <th width="14%">Asal Surat</th>
-                                <th width="14%">Tujuan surat</th>
-                                <th>Sifat surat</th>
-                                <th width="15%">Pilihan</th>
+                                <th style="width: 4% ">No</th>
+                                <th width="15%">No surat</th>
+                                <th width="10%">Index surat</th>
+                                <th width="12%">Tanggal surat</th>
+                                <th width="11%">Periode surat</th>
+                                <th width="12%">Asal Surat</th>
+                                <th width="12%">Tujuan surat</th>
+                                <th width="9%">Sifat surat</th>
+                                <th style="text-align: center" width="12%">Pilihan</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -407,11 +407,11 @@
                                 <td><?php echo $row->sifat_surat;  ?></td>
                                 <td style="text-align: center;">
                                   <div class="btn-group">
-                                    <button class="btn btn-info btn-flat" data-toggle="tooltip" title="Lihat" onclick="viewSurat(<?php echo $row->id_surat; ?>);"><i class="fa fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-info btn-flat" data-toggle="tooltip" title="Lihat" onclick="viewSurat(<?php echo $row->id_surat; ?>);"><i class="fa fa-eye"></i></button>
 
                                     <?php if ($jabatan!='Kepala') { ?>
-                                    <button class="btn btn-primary btn-flat" data-toggle="tooltip" title="Edit" onclick="editAgenda(<?php echo $row->id_surat; ?>);"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-danger btn-flat" data-toggle="tooltip" title="Delete" onclick="deleteSurat(<?php echo $row->id_surat; ?>);"><i class="fa fa-trash"></i></button>
+                                    <button class="btn btn-sm btn-primary btn-flat" data-toggle="tooltip" title="Edit" onclick="editAgenda(<?php echo $row->id_surat; ?>);"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-sm btn-danger btn-flat" data-toggle="tooltip" title="Delete" onclick="deleteSurat(<?php echo $row->id_surat; ?>);"><i class="fa fa-trash"></i></button>
                                     <?php } ?>
                                   </div>
                                 </td>
